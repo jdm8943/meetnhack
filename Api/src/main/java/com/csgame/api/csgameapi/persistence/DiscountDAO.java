@@ -12,5 +12,5 @@ public interface DiscountDAO {
 
     Discount updateDiscount(Discount discount) throws IOException;
 
-    boolean deleteDiscount(Discount discount) throws IOException;
+    boolean deleteDiscount(int id) throws IOException;
 }
