@@ -1,3 +1,3 @@
-public class VolunterUser {
-    
+public class VolunteerUser {
+
 }
