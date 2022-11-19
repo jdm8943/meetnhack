@@ -1,4 +1,4 @@
-package com.csgame.api.csgameapi.model.Discount;
+package com.csgame.api.csgameapi.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,13 +32,13 @@ public class Discount {
         this.companyId = companyId;
     }
 
-    public int getId(){ return this.id(); }
+    public int getId(){ return this.id; }
 
-    public String geName(){ return this.name(); }
+    public String geName(){ return this.name; }
     
-    public int getLevelRequired(){ return this.levelRequired(); }
+    public int getLevelRequired(){ return this.levelRequired; }
 
-    public int getPointsRequired(){ return this.pointsRequired(); }
+    public int getPointsRequired(){ return this.pointsRequired; }
 
-    public int getCompanyId(){ return this.companyId(); }
+    public int getCompanyId(){ return this.companyId; }
 }

@@ -1,4 +1,4 @@
-package com.csgame.api.csgameapi.persistance.DiscountDAO;
+package com.csgame.api.csgameapi.persistence;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import com.csgame.api.csgameapi.model.Discount;
 
 public interface DiscountDAO {
     
-    Boolean getDiscount(int id) throws IOException;
+    Discount getDiscount(int id) throws IOException;
 
     Discount createDiscount(Discount discount) throws IOException;
 

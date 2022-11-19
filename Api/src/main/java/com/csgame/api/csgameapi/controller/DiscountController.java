@@ -1,10 +1,21 @@
-package com.csgame.api.csgameapi.controller.DiscountController;
+package com.csgame.api.csgameapi.controller;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.csgame.api.csgameapi.persistance.DiscountDAO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.csgame.api.csgameapi.model.Discount;
+import com.csgame.api.csgameapi.persistence.DiscountDAO;
 
 @RestController
 @RequestMapping("discounts")
@@ -19,9 +30,8 @@ public class DiscountController {
     @PostMapping("")
     public ResponseEntity<Discount> createDiscount(@RequestBody Discount discount) {
         LOG.info("POST /discounts " + discount);
-        String name = discount.getDiscount();
         try{
-            Discount response = discountDAO.getDiscount(discount.getId);
+            Discount response = discountDAO.getDiscount(discount.getId());
             if(response == null){
                 return new ResponseEntity<Discount>(discountDAO.createDiscount(discount), HttpStatus.CREATED);
             }
@@ -57,7 +67,7 @@ public class DiscountController {
         try {
             Discount newDiscount = discountDAO.updateDiscount(discount);
             if (newDiscount != null)
-                return new ResponseEntity<Discount>(newDiscount,HttpStatus.OK);
+                return new ResponseEntity<Discount>(newDiscount:,HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
