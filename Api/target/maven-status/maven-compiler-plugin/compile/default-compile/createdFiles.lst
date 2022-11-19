@@ -2,11 +2,13 @@ EventFileDAO.class
 NPOUserController.class
 EventController.class
 com\csgame\api\csgameapi\model\VolunteerUser.class
+CompanyUserController.class
 EventDAO.class
 DiscountFileDAO.class
 DiscountDAO.class
 CompanyUserDAO.class
 UserController.class
+VolunteerUserController.class
 com\csgame\api\csgameapi\model\User.class
 com\csgame\api\csgameapi\CSGameApiApplication.class
 DiscountController.class
