@@ -1,3 +1,3 @@
-public class DiscountDAO {
+public interface DiscountDAO {
     
 }

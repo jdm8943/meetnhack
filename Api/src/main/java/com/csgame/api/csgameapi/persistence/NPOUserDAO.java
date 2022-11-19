@@ -1,3 +1,3 @@
-public class NPOUserDAO {
+public interface NPOUserDAO {
     
 }
