@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.User;
 
+@Component
 public class UserFileDAO implements UserDAO {
     Map<String, User> users;
 
