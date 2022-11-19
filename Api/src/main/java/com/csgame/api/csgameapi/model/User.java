@@ -1,17 +1,21 @@
+package com.csgame.api.csgameapi.model;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-public class User {
+public abstract class User {
     protected String STRING_FORMAT = "USER [uid=%d, username=%s]";
 
     @JsonProperty("UID")
     private String UID;
     @JsonProperty("username")
-    private String name;
+    private String username;
     @JsonProperty("password")
     private String password;
 
-    public User(@JsonProperty("uid") int UID, @JsonProperty("username") String username, @JsonProperty("password") String password) {
+    public User(@JsonProperty("uid") String UID, @JsonProperty("username") String username,
+            @JsonProperty("password") String password) {
         this.UID = UID;
         this.username = username;
         this.password = password;

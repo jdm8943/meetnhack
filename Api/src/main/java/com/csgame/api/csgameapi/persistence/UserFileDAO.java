@@ -23,7 +23,7 @@ public class UserFileDAO implements UserDAO {
     public UserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
-        
+
         load();
     }
 
@@ -31,13 +31,15 @@ public class UserFileDAO implements UserDAO {
         ArrayList<User> userArray = new ArrayList<>();
 
         for (User u : users.values())
-            userArray.add(e);
-        
-        return userArray;
+            userArray.add(u);
+
+        User[] array = (User[]) userArray.toArray();
+
+        return array;
     }
 
     public User getUser(String username) {
-        synchronized(users) {
+        synchronized (users) {
             if (users.containsKey(username))
                 return users.get(username);
             else
@@ -46,7 +48,7 @@ public class UserFileDAO implements UserDAO {
     }
 
     public User[] getUsers() {
-        synchronized(users) {
+        synchronized (users) {
             return getUsersArray();
         }
     }
@@ -65,15 +67,20 @@ public class UserFileDAO implements UserDAO {
 
         for (User user : userArray)
             users.put(user.getUsername(), user);
-        
+
         return true;
     }
 
     public User login(String username, String password) {
-        for (org.apache.catalina.User u : users.values())
+        for (User u : users.values()) {
             if (u.getUsername() == username && u.getPassword() == password)
                 return u;
-        
+        }
+
         return null;
+    }
+
+    public User updateUser(User user) {
+        return user;
     }
 }
