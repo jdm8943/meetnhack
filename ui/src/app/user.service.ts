@@ -11,17 +11,10 @@ import { User } from './user';
 })
 export class UserService {
 
-  private userUrl = 'api/UID';
+  private userUrl = 'http://localhost:8080/users';
 
   constructor(private http: HttpClient) { }
 
-  // getUsers(): Observable<User[]> {
-  //   return this.http.get<User[]>(this.userUrl)
-  //     .pipe(
-  //       tap(_ => console.log('fetched heroes')),
-  //       catchError(this.handleError<User[]>('getHeroes', []))
-  //     );
-  // }
   /** GET hero by id. Will 404 if id not found */
   getUser(id: string): Observable<User> {
     const url = `${this.userUrl}/${id}`;
