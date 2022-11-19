@@ -41,13 +41,16 @@ public class DiscountFileDAO implements DiscountDAO {
 
     @Override
     public Discount getDiscount(int id) throws IOException {
-        // TODO Auto-generated method stub
-        return null;
+        synchronized(discounts) {
+            if (discounts.containsKey(id))
+                return discounts.get(id);
+            else
+                return null;
+        }
     }
 
     @Override
     public Discount createDiscount(Discount discount) throws IOException {
-        // TODO Auto-generated method stub
         return null;
     }
 
