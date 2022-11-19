@@ -1,4 +1,4 @@
-package com.heroes.api.heroesapi.controller;
+package com.csgame.api.csgameapi.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doThrow;
@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 
-import com.heroes.api.heroesapi.persistence.HeroDAO;
-import com.heroes.api.heroesapi.model.Hero;
+import com.csgame.api.csgameapi.persistence.HeroDAO;
+import com.csgame.api.csgameapi.model.Hero;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -179,63 +179,63 @@ public class HeroControllerTest {
     }
 
     @Test
-    public void testGetHeroes() throws IOException { // getHeroes may throw IOException
+    public void testGetcsgame() throws IOException { // getcsgame may throw IOException
         // Setup
-        Hero[] heroes = new Hero[2];
-        heroes[0] = new Hero(99,"Bolt");
-        heroes[1] = new Hero(100,"The Great Iguana");
-        // When getHeroes is called return the heroes created above
-        when(mockHeroDAO.getHeroes()).thenReturn(heroes);
+        Hero[] csgame = new Hero[2];
+        csgame[0] = new Hero(99,"Bolt");
+        csgame[1] = new Hero(100,"The Great Iguana");
+        // When getcsgame is called return the csgame created above
+        when(mockHeroDAO.getcsgame()).thenReturn(csgame);
 
         // Invoke
-        ResponseEntity<Hero[]> response = heroController.getHeroes();
+        ResponseEntity<Hero[]> response = heroController.getcsgame();
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(heroes,response.getBody());
+        assertEquals(csgame,response.getBody());
     }
 
     @Test
-    public void testGetHeroesHandleException() throws IOException { // getHeroes may throw IOException
+    public void testGetcsgameHandleException() throws IOException { // getcsgame may throw IOException
         // Setup
-        // When getHeroes is called on the Mock Hero DAO, throw an IOException
-        doThrow(new IOException()).when(mockHeroDAO).getHeroes();
+        // When getcsgame is called on the Mock Hero DAO, throw an IOException
+        doThrow(new IOException()).when(mockHeroDAO).getcsgame();
 
         // Invoke
-        ResponseEntity<Hero[]> response = heroController.getHeroes();
+        ResponseEntity<Hero[]> response = heroController.getcsgame();
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
     }
 
     @Test
-    public void testSearchHeroes() throws IOException { // findHeroes may throw IOException
+    public void testSearchcsgame() throws IOException { // findcsgame may throw IOException
         // Setup
         String searchString = "la";
-        Hero[] heroes = new Hero[2];
-        heroes[0] = new Hero(99,"Galactic Agent");
-        heroes[1] = new Hero(100,"Ice Gladiator");
-        // When findHeroes is called with the search string, return the two
-        /// heroes above
-        when(mockHeroDAO.findHeroes(searchString)).thenReturn(heroes);
+        Hero[] csgame = new Hero[2];
+        csgame[0] = new Hero(99,"Galactic Agent");
+        csgame[1] = new Hero(100,"Ice Gladiator");
+        // When findcsgame is called with the search string, return the two
+        /// csgame above
+        when(mockHeroDAO.findcsgame(searchString)).thenReturn(csgame);
 
         // Invoke
-        ResponseEntity<Hero[]> response = heroController.searchHeroes(searchString);
+        ResponseEntity<Hero[]> response = heroController.searchcsgame(searchString);
 
         // Analyze
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals(heroes,response.getBody());
+        assertEquals(csgame,response.getBody());
     }
 
     @Test
-    public void testSearchHeroesHandleException() throws IOException { // findHeroes may throw IOException
+    public void testSearchcsgameHandleException() throws IOException { // findcsgame may throw IOException
         // Setup
         String searchString = "an";
         // When createHero is called on the Mock Hero DAO, throw an IOException
-        doThrow(new IOException()).when(mockHeroDAO).findHeroes(searchString);
+        doThrow(new IOException()).when(mockHeroDAO).findcsgame(searchString);
 
         // Invoke
-        ResponseEntity<Hero[]> response = heroController.searchHeroes(searchString);
+        ResponseEntity<Hero[]> response = heroController.searchcsgame(searchString);
 
         // Analyze
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR,response.getStatusCode());
