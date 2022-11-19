@@ -50,5 +50,21 @@ public class DiscountController {
         }
     }
 
+    @PutMapping("")
+    public ResponseEntity<Discount> updateDiscount(@RequestBody Discount discount) {
+        LOG.info("PUT /discounts " + discount);
+        
+        try {
+            Discount newDiscount = discountDAO.updateDiscount(discount);
+            if (newDiscount != null)
+                return new ResponseEntity<Discount>(newDiscount,HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(IOException e) {
+            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 }
