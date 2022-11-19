@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class User {
-    protected String STRING_FORMAT = "USER [uid=%d, username=%s]";
+    protected String STRING_FORMAT = "USER [UID=%d, username=%s, password=%s]";
 
     @JsonProperty("UID")
     private String UID;
