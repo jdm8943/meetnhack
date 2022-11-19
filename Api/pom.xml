@@ -66,15 +66,15 @@
 					<execution>
 						<id>zip</id>
 						<configuration>
-						  <executable>mvn</executable>
-						  <arguments>
-							<argument>assembly:single@zip</argument>
-						  </arguments>
+							<executable>mvn</executable>
+							<arguments>
+								<argument>assembly:single@zip</argument>
+							</arguments>
 						</configuration>
-					  </execution>
+					</execution>
 				</executions>
 				<configuration>
-					<mainClass>com.csgame.api.csgameapi.csgameApiApplication</mainClass>
+					<mainClass>com.csgame.api.csgameapi.CSGameApiApplication</mainClass>
 					<arguments></arguments>
 				</configuration>
 			</plugin>
@@ -141,23 +141,23 @@
 					<execution>
 						<id>jacoco-check</id>
 						<goals>
-						  <goal>check</goal>
+							<goal>check</goal>
 						</goals>
 						<configuration>
 							<rules>
-							  <rule>
-								  <element>BUNDLE</element>
-								  <limits>
-								 <limit>
-								   <counter>INSTRUCTION</counter>
-								   <value>COVEREDRATIO</value>
-								   <minimum>0.90</minimum>
-								 </limit>
-							 </limits>
-								 </rule>
-								</rules>
-					   </configuration>
-			 		</execution>
+								<rule>
+									<element>BUNDLE</element>
+									<limits>
+										<limit>
+											<counter>INSTRUCTION</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.90</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
@@ -165,21 +165,21 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>${maven.assembly.version}</version>
 				<executions>
-				  <execution>
-					<id>zip</id>
-					<configuration>
-					  <descriptors>
-						<descriptor>src/assembly/zip.xml</descriptor>
-					  </descriptors>
-					  <finalName>csgame-api</finalName>
-					  <appendAssemblyId>false</appendAssemblyId>
-					</configuration>
-					<goals>
-					  <goal>single</goal>
-					</goals>
-				  </execution>
+					<execution>
+						<id>zip</id>
+						<configuration>
+							<descriptors>
+								<descriptor>src/assembly/zip.xml</descriptor>
+							</descriptors>
+							<finalName>csgame-api</finalName>
+							<appendAssemblyId>false</appendAssemblyId>
+						</configuration>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
 				</executions>
-			  </plugin>
+			</plugin>
 		</plugins>
 	</build>
 </project>
