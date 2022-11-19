@@ -89,14 +89,26 @@ public class DiscountFileDAO implements DiscountDAO {
 
     @Override
     public Discount updateDiscount(Discount discount) throws IOException {
-        // TODO Auto-generated method stub
-        return null;
+        synchronized(discounts) {
+            if (discounts.containsKey(discount.getId()) == true){
+                discounts.put(discount.getId(), discount);
+                save(); // may throw an IOException
+                return discount;
+            }  
+        }
+        return null; // product does not exist
     }
 
     @Override
-    public boolean deleteDiscount(Discount discount) throws IOException {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean deleteDiscount(int id) throws IOException {
+        synchronized(discounts) {
+            if (discounts.containsKey(id)) {
+                discounts.remove(id);
+                return save();
+            }
+            else
+                return false;
+        }
     }
 
     
