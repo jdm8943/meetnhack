@@ -34,7 +34,7 @@ public class UserController {
             User user = userDao.getUser(UID);
 
             if (user != null)
-                return new ResponseEntity<User>(user,HttpStatus.OK);
+                return new ResponseEntity<User>(user, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -51,6 +51,9 @@ public class UserController {
 
     //         User userToUpdate = userDao.getUser(UID);
             
+    //         if (userToUpdate != null) {
+    //             if (userToUpdate.getPassword().equals )
+    //         }
     //     }
     //     catch (IOException e)
     //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
