@@ -38,12 +38,13 @@ public class UserFileDAO implements UserDAO {
         return array;
     }
 
-    public User getUser(String username) {
+    public User getUser(String uid) {
         synchronized (users) {
-            if (users.containsKey(username))
-                return users.get(username);
-            else
-                return null;
+            for (User u : users.values())
+                if (u.getUID().equals(uid))
+                    return u;
+
+            return null;
         }
     }
 
