@@ -8,7 +8,7 @@ public class Event {
     protected String STRING_FORMAT = "EVENT [eventID=%d, orgID=%s, eventName=%s, Description=%s, points=%d]";
 
     @JsonProperty("eventID")
-    private String eventID;
+    private int eventID;
     @JsonProperty("orgID")
     private String orgID;
     @JsonProperty("eventName")
@@ -18,7 +18,7 @@ public class Event {
     @JsonProperty("points")
     private int points;
 
-    public Event(@JsonProperty("eventID") String eventID, @JsonProperty("orgID") String orgID,
+    public Event(@JsonProperty("eventID") int eventID, @JsonProperty("orgID") String orgID,
             @JsonProperty("eventName") String eventName, @JsonProperty("description") String description,
             @JsonProperty("points") int points) {
         this.eventID = eventID;
@@ -28,7 +28,7 @@ public class Event {
         this.points = points;
     }
 
-    public String getEventID() {
+    public int getEventID() {
         return this.eventID;
     }
 
