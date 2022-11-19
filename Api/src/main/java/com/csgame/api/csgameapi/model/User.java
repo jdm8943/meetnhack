@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-public abstract class User {
+public class User {
     protected String STRING_FORMAT = "USER [uid=%d, username=%s]";
 
     @JsonProperty("UID")
@@ -14,7 +14,7 @@ public abstract class User {
     @JsonProperty("password")
     private String password;
 
-    public User(@JsonProperty("uid") String UID, @JsonProperty("username") String username,
+    public User(@JsonProperty("UID") String UID, @JsonProperty("username") String username,
             @JsonProperty("password") String password) {
         this.UID = UID;
         this.username = username;
