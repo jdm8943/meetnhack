@@ -1,4 +1,4 @@
-package com.heroes.api.heroesapi.controller;
+package com.csgame.api.csgameapi.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.heroes.api.heroesapi.persistence.HeroDAO;
-import com.heroes.api.heroesapi.model.Hero;
+import com.csgame.api.csgameapi.persistence.HeroDAO;
+import com.csgame.api.csgameapi.model.Hero;
 
 /**
  * Handles the REST API requests for the Hero resource
@@ -29,7 +29,7 @@ import com.heroes.api.heroesapi.model.Hero;
  */
 
 @RestController
-@RequestMapping("heroes")
+@RequestMapping("csgame")
 public class HeroController {
     private static final Logger LOG = Logger.getLogger(HeroController.class.getName());
     private HeroDAO heroDao;
@@ -56,7 +56,7 @@ public class HeroController {
      */
     @GetMapping("/{id}")
     public ResponseEntity<Hero> getHero(@PathVariable int id) {
-        LOG.info("GET /heroes/" + id);
+        LOG.info("GET /csgame/" + id);
         try {
             Hero hero = heroDao.getHero(id);
             if (hero != null)
@@ -71,36 +71,36 @@ public class HeroController {
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Hero heroes}
+     * Responds to the GET request for all {@linkplain Hero csgame}
      * 
      * @return ResponseEntity with array of {@link Hero hero} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
     @GetMapping("")
-    public ResponseEntity<Hero[]> getHeroes() {
-        LOG.info("GET /heroes");
+    public ResponseEntity<Hero[]> getcsgame() {
+        LOG.info("GET /csgame");
 
         // Replace below with your implementation
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     /**
-     * Responds to the GET request for all {@linkplain Hero heroes} whose name contains
+     * Responds to the GET request for all {@linkplain Hero csgame} whose name contains
      * the text in name
      * 
-     * @param name The name parameter which contains the text used to find the {@link Hero heroes}
+     * @param name The name parameter which contains the text used to find the {@link Hero csgame}
      * 
      * @return ResponseEntity with array of {@link Hero hero} objects (may be empty) and
      * HTTP status of OK<br>
      * ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      * <p>
-     * Example: Find all heroes that contain the text "ma"
-     * GET http://localhost:8080/heroes/?name=ma
+     * Example: Find all csgame that contain the text "ma"
+     * GET http://localhost:8080/csgame/?name=ma
      */
     @GetMapping("/")
-    public ResponseEntity<Hero[]> searchHeroes(@RequestParam String name) {
-        LOG.info("GET /heroes/?name="+name);
+    public ResponseEntity<Hero[]> searchcsgame(@RequestParam String name) {
+        LOG.info("GET /csgame/?name="+name);
 
         // Replace below with your implementation
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -117,7 +117,7 @@ public class HeroController {
      */
     @PostMapping("")
     public ResponseEntity<Hero> createHero(@RequestBody Hero hero) {
-        LOG.info("POST /heroes " + hero);
+        LOG.info("POST /csgame " + hero);
 
         // Replace below with your implementation
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -134,7 +134,7 @@ public class HeroController {
      */
     @PutMapping("")
     public ResponseEntity<Hero> updateHero(@RequestBody Hero hero) {
-        LOG.info("PUT /heroes " + hero);
+        LOG.info("PUT /csgame " + hero);
 
         // Replace below with your implementation
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
@@ -151,7 +151,7 @@ public class HeroController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Hero> deleteHero(@PathVariable int id) {
-        LOG.info("DELETE /heroes/" + id);
+        LOG.info("DELETE /csgame/" + id);
 
         // Replace below with your implementation
         return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
