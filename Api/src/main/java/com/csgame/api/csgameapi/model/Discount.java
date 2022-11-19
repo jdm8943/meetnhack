@@ -31,5 +31,14 @@ public class Discount {
         this.pointsRequired = pointsRequired;
         this.companyId = companyId;
     }
+
+    public int getId(){ return this.id(); }
+
+    public String geName(){ return this.name(); }
     
+    public int getLevelRequired(){ return this.levelRequired(); }
+
+    public int getPointsRequired(){ return this.pointsRequired(); }
+
+    public int getCompanyId(){ return this.companyId(); }
 }
