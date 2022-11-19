@@ -67,7 +67,7 @@ public class DiscountController {
         try {
             Discount newDiscount = discountDAO.updateDiscount(discount);
             if (newDiscount != null)
-                return new ResponseEntity<Discount>(newDiscount:,HttpStatus.OK);
+                return new ResponseEntity<Discount>(newDiscount, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
