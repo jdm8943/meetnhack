@@ -1,4 +1,4 @@
-package com.heroes.api.heroesapi.model;
+package com.csgame.api.csgameapi.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,7 +1,7 @@
-package com.heroes.api.heroesapi.persistence;
+package com.csgame.api.csgameapi.persistence;
 
 import java.io.IOException;
-import com.heroes.api.heroesapi.model.Hero;
+import com.csgame.api.csgameapi.model.Hero;
 
 /**
  * Defines the interface for Hero object persistence
@@ -10,24 +10,24 @@ import com.heroes.api.heroesapi.model.Hero;
  */
 public interface HeroDAO {
     /**
-     * Retrieves all {@linkplain Hero heroes}
+     * Retrieves all {@linkplain Hero csgame}
      * 
      * @return An array of {@link Hero hero} objects, may be empty
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Hero[] getHeroes() throws IOException;
+    Hero[] getcsgame() throws IOException;
 
     /**
-     * Finds all {@linkplain Hero heroes} whose name contains the given text
+     * Finds all {@linkplain Hero csgame} whose name contains the given text
      * 
      * @param containsText The text to match against
      * 
-     * @return An array of {@link Hero heroes} whose nemes contains the given text, may be empty
+     * @return An array of {@link Hero csgame} whose nemes contains the given text, may be empty
      * 
      * @throws IOException if an issue with underlying storage
      */
-    Hero[] findHeroes(String containsText) throws IOException;
+    Hero[] findcsgame(String containsText) throws IOException;
 
     /**
      * Retrieves a {@linkplain Hero hero} with the given id

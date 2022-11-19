@@ -1,4 +1,4 @@
-package com.heroes.api.heroesapi.persistence;
+package com.csgame.api.csgameapi.persistence;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.heroes.api.heroesapi.model.Hero;
+import com.csgame.api.csgameapi.model.Hero;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 @Tag("Persistence-tier")
 public class HeroFileDAOTest {
     HeroFileDAO heroFileDAO;
-    Hero[] testHeroes;
+    Hero[] testcsgame;
     ObjectMapper mockObjectMapper;
 
     /**
@@ -39,39 +39,39 @@ public class HeroFileDAOTest {
     @BeforeEach
     public void setupHeroFileDAO() throws IOException {
         mockObjectMapper = mock(ObjectMapper.class);
-        testHeroes = new Hero[3];
-        testHeroes[0] = new Hero(99,"Wi-Fire");
-        testHeroes[1] = new Hero(100,"Galactic Agent");
-        testHeroes[2] = new Hero(101,"Ice Gladiator");
+        testcsgame = new Hero[3];
+        testcsgame[0] = new Hero(99,"Wi-Fire");
+        testcsgame[1] = new Hero(100,"Galactic Agent");
+        testcsgame[2] = new Hero(101,"Ice Gladiator");
 
         // When the object mapper is supposed to read from the file
         // the mock object mapper will return the hero array above
         when(mockObjectMapper
             .readValue(new File("doesnt_matter.txt"),Hero[].class))
-                .thenReturn(testHeroes);
+                .thenReturn(testcsgame);
         heroFileDAO = new HeroFileDAO("doesnt_matter.txt",mockObjectMapper);
     }
 
     @Test
-    public void testGetHeroes() {
+    public void testGetcsgame() {
         // Invoke
-        Hero[] heroes = heroFileDAO.getHeroes();
+        Hero[] csgame = heroFileDAO.getcsgame();
 
         // Analyze
-        assertEquals(heroes.length,testHeroes.length);
-        for (int i = 0; i < testHeroes.length;++i)
-            assertEquals(heroes[i],testHeroes[i]);
+        assertEquals(csgame.length,testcsgame.length);
+        for (int i = 0; i < testcsgame.length;++i)
+            assertEquals(csgame[i],testcsgame[i]);
     }
 
     @Test
-    public void testFindHeroes() {
+    public void testFindcsgame() {
         // Invoke
-        Hero[] heroes = heroFileDAO.findHeroes("la");
+        Hero[] csgame = heroFileDAO.findcsgame("la");
 
         // Analyze
-        assertEquals(heroes.length,2);
-        assertEquals(heroes[0],testHeroes[1]);
-        assertEquals(heroes[1],testHeroes[2]);
+        assertEquals(csgame.length,2);
+        assertEquals(csgame[0],testcsgame[1]);
+        assertEquals(csgame[1],testcsgame[2]);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class HeroFileDAOTest {
         Hero hero = heroFileDAO.getHero(99);
 
         // Analzye
-        assertEquals(hero,testHeroes[0]);
+        assertEquals(hero,testcsgame[0]);
     }
 
     @Test
@@ -92,10 +92,10 @@ public class HeroFileDAOTest {
         // Analzye
         assertEquals(result,true);
         // We check the internal tree map size against the length
-        // of the test heroes array - 1 (because of the delete)
-        // Because heroes attribute of HeroFileDAO is package private
+        // of the test csgame array - 1 (because of the delete)
+        // Because csgame attribute of HeroFileDAO is package private
         // we can access it directly
-        assertEquals(heroFileDAO.heroes.size(),testHeroes.length-1);
+        assertEquals(heroFileDAO.csgame.size(),testcsgame.length-1);
     }
 
     @Test
@@ -159,7 +159,7 @@ public class HeroFileDAOTest {
 
         // Analyze
         assertEquals(result,false);
-        assertEquals(heroFileDAO.heroes.size(),testHeroes.length);
+        assertEquals(heroFileDAO.csgame.size(),testcsgame.length);
     }
 
     @Test
