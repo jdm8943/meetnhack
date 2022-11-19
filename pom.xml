@@ -7,11 +7,11 @@
 		<version>2.5.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.heroes.api</groupId>
-	<artifactId>heroes-api</artifactId>
+	<groupId>com.csgame.api</groupId>
+	<artifactId>csgame-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>heroes-api</name>
-	<description>API for Tour of Heroes</description>
+	<name>csgame-api</name>
+	<description>API for Tour of csgame</description>
 	<properties>
 		<java.version>11</java.version>
 		<jacoco.version>0.8.7</jacoco.version>
@@ -74,7 +74,7 @@
 					  </execution>
 				</executions>
 				<configuration>
-					<mainClass>com.heroes.api.heroesapi.HeroesApiApplication</mainClass>
+					<mainClass>com.csgame.api.csgameapi.csgameApiApplication</mainClass>
 					<arguments></arguments>
 				</configuration>
 			</plugin>
@@ -109,7 +109,7 @@
 						<id>controller</id>
 						<configuration>
 							<footer>Controller Tier</footer>
-							<title>Heroes API Controller Tier Test Coverage</title>
+							<title>csgame API Controller Tier Test Coverage</title>
 							<outputDirectory>target/site/jacoco/controller</outputDirectory>
 						</configuration>
 						<goals>
@@ -120,7 +120,7 @@
 						<id>persistence</id>
 						<configuration>
 							<footer>Persistence Tier</footer>
-							<title>Heroes API Persistence Tier Test Coverage</title>
+							<title>csgame API Persistence Tier Test Coverage</title>
 							<outputDirectory>target/site/jacoco/persistence</outputDirectory>
 						</configuration>
 						<goals>
@@ -131,7 +131,7 @@
 						<id>model</id>
 						<configuration>
 							<footer>Model Tier</footer>
-							<title>Heroes API Model Tier Test Coverage</title>
+							<title>csgame API Model Tier Test Coverage</title>
 							<outputDirectory>target/site/jacoco/model</outputDirectory>
 						</configuration>
 						<goals>
@@ -171,7 +171,7 @@
 					  <descriptors>
 						<descriptor>src/assembly/zip.xml</descriptor>
 					  </descriptors>
-					  <finalName>heroes-api</finalName>
+					  <finalName>csgame-api</finalName>
 					  <appendAssemblyId>false</appendAssemblyId>
 					</configuration>
 					<goals>
