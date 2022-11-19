@@ -1,6 +1,0 @@
-com\csgame\api\csgameapi\model\Hero.class
-com\csgame\api\csgameapi\controller\HeroController.class
-com\csgame\api\csgameapi\csgameApiApplication.class
-com\csgame\api\csgameapi\persistence\HeroDAO.class
-com\csgame\api\csgameapi\persistence\HeroFileDAO.class
-com\csgame\api\csgameapi\WebConfig.class
