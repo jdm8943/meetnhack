@@ -7,11 +7,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.Discount;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+@Component
 public class DiscountFileDAO implements DiscountDAO {
     public Map<Integer, Discount> discounts; 
     private ObjectMapper objectMapper;  
@@ -19,7 +20,7 @@ public class DiscountFileDAO implements DiscountDAO {
     private String filename;
 
 
-    public DiscountFileDAO(@Value("${discount.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public DiscountFileDAO(@Value("${discounts.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
