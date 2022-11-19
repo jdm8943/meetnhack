@@ -111,7 +111,7 @@ public class EventController {
      */
     @GetMapping("/")
     public ResponseEntity<Event[]> searchEvents(@RequestParam String eventName) {
-        LOG.info("GET /events/?name=" + eventName);
+        LOG.info("GET /events/?eventName=" + eventName);
 
         try {
             Event[] events = EventDao.findEvents(eventName);
@@ -188,7 +188,7 @@ public class EventController {
      *         ResponseEntity with HTTP status of NOT_FOUND if not found<br>
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      */
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{eventID}")
     public ResponseEntity<Event> deleteEvent(@PathVariable int eventID) {
         LOG.info("DELETE /events/" + eventID);
 

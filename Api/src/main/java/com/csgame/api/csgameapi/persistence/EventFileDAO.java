@@ -83,17 +83,18 @@ public class EventFileDAO implements EventDAO {
      * @return The array of {@link Event events}, may be empty
      */
     private Event[] getEventsArray(String containsText) { // if containsText == null, no filter
-        ArrayList<Event> productArrayList = new ArrayList<>();
+        ArrayList<Event> eventArrayList = new ArrayList<>();
         for (Event event : events.values()) {
+            LOG.info(event.getEventName());
             if (containsText == null
                     || event.getEventName().toLowerCase().contains(containsText.toLowerCase())) {
-                productArrayList.add(event);
+                eventArrayList.add(event);
             }
         }
 
-        Event[] productArray = new Event[productArrayList.size()];
-        productArrayList.toArray(productArray);
-        return productArray;
+        Event[] eventArray = new Event[eventArrayList.size()];
+        eventArrayList.toArray(eventArray);
+        return eventArray;
     }
 
     /**
@@ -105,12 +106,12 @@ public class EventFileDAO implements EventDAO {
      * @throws IOException when file cannot be accessed or written to
      */
     private boolean save() throws IOException {
-        Event[] productArray = getEventsArray();
+        Event[] eventArray = getEventsArray();
 
         // Serializes the Java Objects to JSON objects into the file
         // writeValue will thrown an IOException if there is an issue
         // with the file or reading from the file
-        objectMapper.writeValue(new File(filename), productArray);
+        objectMapper.writeValue(new File(filename), eventArray);
         return true;
     }
 
@@ -130,10 +131,10 @@ public class EventFileDAO implements EventDAO {
         // Deserializes the JSON objects from the file into an array of events
         // readValue will throw an IOException if there's an issue with the file
         // or reading from the file
-        Event[] productArray = objectMapper.readValue(new File(filename), Event[].class);
+        Event[] eventArray = objectMapper.readValue(new File(filename), Event[].class);
 
         // Add each event to the tree map and keep track of the greatest id
-        for (Event event : productArray) {
+        for (Event event : eventArray) {
             if (event.getEventID() > nextId) {
                 nextId = event.getEventID();
                 events.put(event.getEventID(), event);
