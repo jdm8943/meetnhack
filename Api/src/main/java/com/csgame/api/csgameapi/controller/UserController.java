@@ -28,10 +28,10 @@ public class UserController {
         this.userDao = userDao;
     }
 
-    @GetMapping("/{uid}")
-    public ResponseEntity<User> getUser(@PathVariable String uid) {
+    @GetMapping("/{UID}")
+    public ResponseEntity<User> getUser(@PathVariable String UID) {
         try {
-            User user = userDao.getUser(uid);
+            User user = userDao.getUser(UID);
 
             if (user != null)
                 return new ResponseEntity<User>(user,HttpStatus.OK);

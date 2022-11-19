@@ -39,10 +39,10 @@ public class UserFileDAO implements UserDAO {
         return array;
     }
 
-    public User getUser(String uid) {
+    public User getUser(String UID) {
         synchronized (users) {
             for (User u : users.values())
-                if (u.getUID().equals(uid))
+                if (u.getUID().equals(UID))
                     return u;
 
             return null;
