@@ -85,7 +85,6 @@ public class EventFileDAO implements EventDAO {
     private Event[] getEventsArray(String containsText) { // if containsText == null, no filter
         ArrayList<Event> eventArrayList = new ArrayList<>();
         for (Event event : events.values()) {
-            LOG.info(event.getEventName());
             if (containsText == null
                     || event.getEventName().toLowerCase().contains(containsText.toLowerCase())) {
                 eventArrayList.add(event);
