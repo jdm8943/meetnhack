@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.User;
 
+@Component
 public class UserFileDAO implements UserDAO {
     Map<String, User> users;
 
@@ -38,12 +39,13 @@ public class UserFileDAO implements UserDAO {
         return array;
     }
 
-    public User getUser(String username) {
+    public User getUser(String UID) {
         synchronized (users) {
-            if (users.containsKey(username))
-                return users.get(username);
-            else
-                return null;
+            for (User u : users.values())
+                if (u.getUID().equals(UID))
+                    return u;
+
+            return null;
         }
     }
 
