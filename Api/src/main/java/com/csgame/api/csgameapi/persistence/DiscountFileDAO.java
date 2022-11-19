@@ -2,6 +2,7 @@ package com.csgame.api.csgameapi.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Value;
 import com.csgame.api.csgameapi.model.Discount;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ch.qos.logback.classic.Logger;
 
 public class DiscountFileDAO implements DiscountDAO {
     public Map<Integer, Discount> discounts; 
@@ -18,10 +18,17 @@ public class DiscountFileDAO implements DiscountDAO {
     private static int nextId;
     private String filename;
 
+
     public DiscountFileDAO(@Value("${discount.file}") String filename,ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
+    }
+
+    private synchronized static int nextId() {
+        int id = nextId;
+        ++nextId;
+        return id;
     }
 
     private boolean load() throws IOException {
@@ -51,7 +58,33 @@ public class DiscountFileDAO implements DiscountDAO {
 
     @Override
     public Discount createDiscount(Discount discount) throws IOException {
-        return null;
+        synchronized(discounts) {
+            Discount newDiscount = new Discount(nextId(), discount.geName(), discount.getLevelRequired(), discount.getPointsRequired(), discount.getCompanyId());
+            discounts.put(newDiscount.getId(),newDiscount);
+            save();
+            return newDiscount;
+        }
+    }
+
+    private Discount[] getDiscountsArray(String containsText) { // if containsText == null, no filter
+        ArrayList<Discount> discountArrayList = new ArrayList<>();
+
+        for (Discount discount : discounts.values()) {
+            if (containsText == null || discount.geName().contains(containsText)) {
+                discountArrayList.add(discount);
+            }
+        }
+
+        Discount[] discountArray = new Discount[discountArrayList.size()];
+        discountArrayList.toArray(discountArray);
+        return discountArray;
+    }
+
+    private boolean save() throws IOException {
+        Discount[] userArray = getDiscountsArray(null);
+
+        objectMapper.writeValue(new File(filename),userArray);
+        return true;
     }
 
     @Override
