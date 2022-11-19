@@ -26,20 +26,20 @@ export class EventService {
   }
 
   /** GET events by id. Return `undefined` when id not found */
-  getEventNo404<Data>(id: number): Observable<Event> {
-    const url = `${this.eventsUrl}/?id=${id}`;
+  getEventNo404<Data>(eventID: string): Observable<Event> {
+    const url = `${this.eventsUrl}/?id=${eventID}`;
     return this.http.get<Event[]>(url)
       .pipe(
         map(events => events[0]), // returns a {0|1} element array
-        catchError(this.handleError<Event>(`getEvent id=${id}`))
+        catchError(this.handleError<Event>(`getEvent id=${eventID}`))
       );
   }
 
   /** GET event by id. Will 404 if id not found */
-  getEvent(id: number): Observable<Event> {
+  getEvent(eventID: string): Observable<Event> {
     const url = `${this.eventsUrl}/${id}`;
     return this.http.get<Event>(url).pipe(
-      catchError(this.handleError<Event>(`getEvent id=${id}`))
+      catchError(this.handleError<Event>(`getEvent id=${eventID}`))
     );
   }
 
@@ -56,15 +56,15 @@ export class EventService {
 
   //////// Save methods //////////
 
-  /** POST: add a new events to the server */
-  addEvent(events: Event): Observable<Event> {
-    return this.http.post<Event>(this.eventsUrl, events, this.httpOptions).pipe(
+  /** POST: add a new event to the server */
+  addEvent(event: Event): Observable<Event> {
+    return this.http.post<Event>(this.eventsUrl, event, this.httpOptions).pipe(
       catchError(this.handleError<Event>('addEvent'))
     );
   }
 
-  /** DELETE: delete the events from the server */
-  deleteEvent(id: number): Observable<Event> {
+  /** DELETE: delete the event from the server */
+  deleteEvent(eventID: string): Observable<Event> {
     const url = `${this.eventsUrl}/${id}`;
 
     return this.http.delete<Event>(url, this.httpOptions).pipe(
@@ -72,7 +72,7 @@ export class EventService {
     );
   }
 
-  /** PUT: update the events on the server */
+  /** PUT: update the event on the server */
   updateEvent(events: Event): Observable<Event> {
     return this.http.put<Event>(this.eventsUrl, events, this.httpOptions).pipe(
       catchError(this.handleError<Event>('updateEvent'))
