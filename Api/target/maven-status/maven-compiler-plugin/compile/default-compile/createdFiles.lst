@@ -1,0 +1,6 @@
+com\heroes\api\heroesapi\model\Hero.class
+com\heroes\api\heroesapi\controller\HeroController.class
+com\heroes\api\heroesapi\HeroesApiApplication.class
+com\heroes\api\heroesapi\persistence\HeroDAO.class
+com\heroes\api\heroesapi\persistence\HeroFileDAO.class
+com\heroes\api\heroesapi\WebConfig.class
