@@ -1,3 +1,5 @@
-public class VolunteerUserDAO {
+package com.csgame.api.csgameapi.persistence;
+
+public interface VolunteerUserDAO {
     
 }

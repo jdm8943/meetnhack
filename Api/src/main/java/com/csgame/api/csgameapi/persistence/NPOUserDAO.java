@@ -1,3 +1,5 @@
-public class NPOUserDAO {
+package com.csgame.api.csgameapi.persistence;
+
+public interface NPOUserDAO {
     
 }

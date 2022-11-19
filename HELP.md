@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.heroes.api.heroes-api' is invalid and this project uses 'com.heroes.api.heroesapi' instead.
+* The original package name 'com.csgame.api.csgame-api' is invalid and this project uses 'com.csgame.api.csgameapi' instead.
 
 # Getting Started
 

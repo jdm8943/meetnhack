@@ -1,3 +1,5 @@
-public class EventDAO {
+package com.csgame.api.csgameapi.persistence;
+
+public interface EventDAO {
     
 }

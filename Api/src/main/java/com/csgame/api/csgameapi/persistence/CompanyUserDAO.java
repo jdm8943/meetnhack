@@ -1,3 +1,5 @@
-public class CompanyUserDAO {
+package com.csgame.api.csgameapi.persistence;
+
+public interface CompanyUserDAO {
     
 }
