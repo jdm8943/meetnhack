@@ -59,4 +59,13 @@ export class UserService {
         catchError(this.handleError<User>('add event'))
     );
   }
+
+  completeEvent(UID: String, eventID: number){
+    const url = `${this.userUrl}/${UID}/${eventID}`;
+    return this.http.delete<User>(url, this.httpOptions)
+      .pipe(
+        tap((newUser: User) => console.log()),
+        catchError(this.handleError<User>('add event'))
+    );
+  }
 }
