@@ -47,4 +47,8 @@ public class CompanyUser extends User {
         companyDiscounts.add(discount);
         return discount;
     }
+
+    public ArrayList<Discount> getCompanyDiscounts(){
+        return companyDiscounts;
+    }
 }
