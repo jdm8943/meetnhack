@@ -1,11 +1,9 @@
 package com.csgame.api.csgameapi.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 public class User {
-    protected String STRING_FORMAT = "USER [UID=%d, username=%s, password=%s]";
+    protected String STRING_FORMAT = "User [UID=%d, username=%s, password=%s]";
 
     @JsonProperty("UID")
     private String UID;

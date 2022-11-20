@@ -2,11 +2,33 @@
     {
         "UID": "V0",
         "username": "TestVolunteer",
-        "password": "password"
+        "password": "password",
+        "name": "Spencer",
+        "currentPoints": 100,
+        "level": 100,
+        "claimedDiscounts": null,
+        "eventsJoined": null
     },
     {
-        "UID": "O13",
-        "username": "org",
-        "password": "b"
+        "UID": "V4",
+        "username": "mommy",
+        "password": "elise",
+        "name": "Elise",
+        "currentPoints": 100,
+        "level": 100,
+        "claimedDiscounts": null,
+        "eventsJoined": null
+    },
+    {
+        "UID": "C1",
+        "username": "TestCompany",
+        "password": "password1",
+        "companyName": "Target"
+    },
+    {
+        "UID": "O2",
+        "username": "TestOrg",
+        "password": "password1",
+        "orgName": "Cleveland Kosher Food Bank"
     }
 ]
