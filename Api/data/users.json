@@ -3,5 +3,10 @@
         "UID": "V0",
         "username": "TestVolunteer",
         "password": "password"
+    },
+    {
+        "UID": "O0",
+        "username": "org",
+        "password": "b"
     }
 ]
