@@ -30,10 +30,9 @@ export class AddEventComponent implements OnInit {
     console.log(this.orgID);
   }
 
-  add(orgID: number, eventName: string, description: string, points: number, date: string): void {
-    if (!orgID || !eventName || !description || !points || !date) { return; }
-    this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
-      .subscribe();
+  add(eventName: string, description: string, points: number, date: string): void {
+    // if (!orgID || !eventName || !description || !points || !date) { return; }
+    // this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
     return;
   }
 
