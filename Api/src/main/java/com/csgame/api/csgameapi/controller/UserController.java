@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @GetMapping("/{UID}")
-    public ResponseEntity<VolunteerUser> getUser(@PathVariable String UID) {
+    public ResponseEntity<User> getUser(@PathVariable String UID) {
         try {
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
@@ -81,11 +81,11 @@ public class UserController {
             }
 
             if (u.equals("V"))
-                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
+                return new ResponseEntity<User>((VolunteerUser)v, HttpStatus.OK);
             else if (u.equals("C"))
-                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
+                return new ResponseEntity<User>((CompanyUser)c, HttpStatus.OK);
             else
-                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
+                return new ResponseEntity<User>((NPOUser)n, HttpStatus.OK);
         }
         catch(IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
