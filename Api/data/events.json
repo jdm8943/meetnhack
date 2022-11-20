@@ -1,21 +1,12 @@
 [
     {
-        "eventID": 4,
-        "orgID": 4,
-        "eventName": "tree mommy",
-        "description": "plant trees for me",
-        "points": 100,
-        "date": null,
-        "attendees": null
-    },
-    {
         "eventID": 11,
         "orgID": 13,
         "eventName": "Forest Clean Up",
         "description": "Clean our local state forest!",
         "points": 200,
-        "date": null,
-        "attendees": null
+        "attendees": [],
+        "date": "11-19-2022"
     },
     {
         "eventID": 13,
@@ -23,8 +14,8 @@
         "eventName": "Thanksgiving Food Drive",
         "description": "Take food donations from donors.",
         "points": 100,
-        "date": null,
-        "attendees": null
+        "attendees": [],
+        "date": "11-19-2022"
     },
     {
         "eventID": 14,
@@ -32,7 +23,7 @@
         "eventName": "Tree Planting",
         "description": "Plant trees with Arbor Club",
         "points": 100,
-        "date": null,
-        "attendees": null
+        "attendees": [],
+        "date": "11-19-2022"
     }
 ]
