@@ -1,5 +1,10 @@
 <body>
-    <div>
-        <h2 *ngIf="orgEvent">{{orgEvent.eventName | uppercase}} Details</h2>
+    <div *ngIf="orgEvent">
+        <h2>{{orgEvent.eventName | uppercase}} Details</h2>
+        <div>
+            <p>{{orgEvent.description}}</p>
+            <p>{{orgEvent.points}}</p>
+        </div>
+        <button id="backButton" type="button" (click)="goBack()">Go Back</button>
     </div>
-</body>>
+</body>

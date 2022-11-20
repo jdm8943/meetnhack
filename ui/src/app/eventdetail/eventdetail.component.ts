@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { EventService } from '../events.service';
 import { OrgEvent } from '../orgEvent';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class EventDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
-    // private location: Location,
+    private location: Location,
     public app: AppComponent
   ) { }
 
@@ -36,9 +37,9 @@ export class EventDetailComponent implements OnInit {
       });
   }
 
-  // goBack(): void {
-  //   this.location.back();
-  // }
+  goBack(): void {
+    this.location.back();
+  }
 
   save(): void {
     if (this.orgEvent) {
