@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import com.csgame.api.csgameapi.model.CompanyUser;
 
 @Component
-public class CompanyUserFileDAO implements CompanyUserDAO {
+public class CompanyUserFileDAO {
     Map<String, CompanyUser> users;
 
     private ObjectMapper objectMapper;
@@ -87,4 +87,3 @@ public class CompanyUserFileDAO implements CompanyUserDAO {
         return user;
     }
 }
-
