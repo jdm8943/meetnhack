@@ -27,9 +27,9 @@ export class AddEventComponent implements OnInit {
     // this.app.loggedIn();
   }
 
-  add(orgID: string, eventName: string, description: string, points: number, date: string): void {
-    if (!orgID || !eventName || !description || !points || !date) { return; }
-    this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
+  add(eventName: string, description: string, points: number, date: string): void {
+    // if (!orgID || !eventName || !description || !points || !date) { return; }
+    // this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
     return;
   }
 
