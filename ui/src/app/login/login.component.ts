@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 
 import { PrimeNGConfig } from 'primeng/api';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponent } from '../app.component';
 
 @Component({
