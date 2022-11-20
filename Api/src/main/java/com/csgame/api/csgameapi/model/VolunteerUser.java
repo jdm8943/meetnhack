@@ -51,22 +51,15 @@ public class VolunteerUser extends User {
                 currentPoints += event.getPoints();
                 level += event.getPoints()/1000;
                 added = event.getPoints();
+                eventsJoined.remove(e);
                 break;
             }
         }
         return added;
     }
 
-    public void setCurrentPoints(int currentPoints) {
-        this.currentPoints = currentPoints;
-    }
-
     public double getLevel() {
         return level;
-    }
-
-    public void setLevel(double level) {
-        this.level = level;
     }
 
     public ArrayList<Discount> getClaimedDiscounts() {
