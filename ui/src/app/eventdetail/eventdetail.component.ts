@@ -14,7 +14,8 @@ import { UserService } from '../user.service';
 })
 export class EventDetailComponent implements OnInit {
   orgEvent: OrgEvent | undefined;
-  eventID: Number | undefined;
+  eventID!: number;
+  UID!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,13 +28,14 @@ export class EventDetailComponent implements OnInit {
   ngOnInit(): void {
     this.app.loggedIn();
     this.getOrgEvent();
+    this.UID = (this.app.loggedInID || '').toString()
   }
 
   getOrgEvent(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    console.log(this.route.snapshot.paramMap.get('id'));
-    console.log(id);
-    this.eventService.getEvent(id)
+    const eventid = parseInt(this.route.snapshot.paramMap.get('id')!, 10) || -1;
+    this.eventID = eventid;
+    console.log(eventid)
+    this.eventService.getEvent(this.eventID)
       .subscribe((orgEvent: OrgEvent | undefined) => {
         this.orgEvent = orgEvent;
       });
@@ -43,15 +45,12 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
 
-  join(eventID: number): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    console.log("USER SERVIEC: ", this.userService.addEvent(String(id), eventID));
+  join(): void {
+    console.log("USER SERVICE: ", this.userService.joinEvent(this.UID, this.eventID).subscribe());
   }
 
-  complete(eventID: number): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    console.log("USER SERVIEC: ", this.userService.completeEvent(String(id), eventID));
-
+  complete(): void {
+    console.log("USER SERVIEC: ", this.userService.completeEvent(this.UID, this.eventID).subscribe());
   }
 
   save(): void {
