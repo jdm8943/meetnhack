@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-//import { EventsComponent } from './events/events.component';
+import { EventsComponent } from './events/events.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +22,7 @@ import {RippleModule} from 'primeng/ripple';
   declarations: [
     AppComponent,
     LoginComponent,
-    //EventsComponent,
+    EventsComponent,
     AddEventComponent
   ],
   imports: [
