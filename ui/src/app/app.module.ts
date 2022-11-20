@@ -12,6 +12,10 @@ import {ButtonModule} from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
+import {CheckboxModule} from 'primeng/checkbox';
+import { ToolbarModule } from 'primeng/toolbar';
+import {RippleModule} from 'primeng/ripple';
+
 import { AddEventComponent } from './add-event/add-event.component';
 import {RippleModule} from 'primeng/ripple';
 
@@ -29,6 +33,9 @@ import {RippleModule} from 'primeng/ripple';
     ButtonModule,
     MenubarModule,
     InputTextModule,
+    CheckboxModule,
+    ToolbarModule,
+    RippleModule,
     RippleModule
   ],
   providers: [],
