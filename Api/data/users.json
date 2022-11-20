@@ -12,6 +12,11 @@
         "uid": "O2"
     },
     {
+        "UID": "O3",
+        "username": "org",
+        "password": "b"
+    },
+    {
         "UID": "V0",
         "username": "TestVolunteer",
         "password": "password",
