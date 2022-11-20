@@ -1,0 +1,7 @@
+.eventlist {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 10px;
+    justify-content: space-evenly;
+    padding: 0;
+}

@@ -1,10 +1,16 @@
-<div class="profile-box">
-    <ul>
-        <li>User: {{username}}</li>
-        <li>Points: {{points}}</li>
-        <li>
-            <app-attending></app-attending>
-        </li>
-    </ul>
+<div id="profile-view">
+    <p-card class="profile-box">
+        <ul>
+            <li>
+                <h2>User: {{username}}</h2>
+            </li>
+            <li>
+                <h2>Points: {{points}}</h2>
+            </li>
+            <li>
+                <app-attending></app-attending>
+            </li>
+        </ul>
+    </p-card>
+    <app-events></app-events>
 </div>
-<app-events></app-events>
