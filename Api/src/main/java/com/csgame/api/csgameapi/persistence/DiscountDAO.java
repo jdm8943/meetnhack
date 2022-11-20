@@ -5,8 +5,10 @@ import java.io.IOException;
 import com.csgame.api.csgameapi.model.Discount;
 
 public interface DiscountDAO {
-    
+
     Discount getDiscount(int id) throws IOException;
+
+    Discount[] getDiscounts() throws IOException;
 
     Discount createDiscount(Discount discount) throws IOException;
 

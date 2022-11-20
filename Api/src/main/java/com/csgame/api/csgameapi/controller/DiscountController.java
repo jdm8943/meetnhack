@@ -30,16 +30,14 @@ public class DiscountController {
     @PostMapping("")
     public ResponseEntity<Discount> createDiscount(@RequestBody Discount discount) {
         LOG.info("POST /discounts " + discount);
-        try{
+        try {
             Discount response = discountDAO.getDiscount(discount.getId());
-            if(response == null){
+            if (response == null) {
                 return new ResponseEntity<Discount>(discountDAO.createDiscount(discount), HttpStatus.CREATED);
-            }
-            else
+            } else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
-        }
-        catch(IOException e){
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -53,9 +51,20 @@ public class DiscountController {
                 return new ResponseEntity<Discount>(discount, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+    }
+
+    @GetMapping("")
+    public ResponseEntity<Discount[]> getDiscounts() {
+        LOG.info("GET /discounts");
+        try {
+            Discount[] discounts = discountDAO.getDiscounts();
+            return new ResponseEntity<Discount[]>(discounts, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -63,16 +72,16 @@ public class DiscountController {
     @PutMapping("")
     public ResponseEntity<Discount> updateDiscount(@RequestBody Discount discount) {
         LOG.info("PUT /discounts " + discount);
-        
+
         try {
             Discount newDiscount = discountDAO.updateDiscount(discount);
-            if (newDiscount != null)
+            if (newDiscount != null) {
                 return new ResponseEntity<Discount>(newDiscount, HttpStatus.OK);
-            else
+            } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
-            LOG.log(Level.SEVERE,e.getLocalizedMessage());
+            }
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
