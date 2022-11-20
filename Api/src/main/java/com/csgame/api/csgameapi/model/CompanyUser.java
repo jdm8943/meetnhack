@@ -28,10 +28,11 @@ public class CompanyUser extends User {
     public CompanyUser(@JsonProperty("UID") String UID,
             @JsonProperty("username") String username,
             @JsonProperty("password") String password,
-            @JsonProperty("companyName") String companyName) {
+            @JsonProperty("companyName") String companyName,
+            @JsonProperty("companyDiscounts") ArrayList<Discount> companyDiscounts) {
         super(UID, username, password);
         this.companyName = companyName;
-        companyDiscounts = new ArrayList<>();
+        this.companyDiscounts = companyDiscounts;
     }
 
     public String getCompanyName() {

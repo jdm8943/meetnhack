@@ -53,41 +53,62 @@ public class UserController {
         this.vDAO = volunteerDAO;
         this.cDAO = companyDAO;
         this.oDAO = npoDAO;
-        this.eDAO =eventDAO;
+        this.eDAO = eventDAO;
     }
 
     @GetMapping("/{UID}")
-    public ResponseEntity<VolunteerUser> getUser(@PathVariable String UID) {
+    public ResponseEntity<User> getUser(@PathVariable String UID) {
         try {
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
             String userType = UID.substring(0, 1);
-            String u;
+
             VolunteerUser v = null;
             CompanyUser c = null;
             NPOUser n = null;
 
             if (userType.equals("V")){
-                u = "V";
                 v = (VolunteerUser) vDAO.getVUser(UID);
             }
             else if (userType.equals("C")){
-                u = "C";
                 c = cDAO.getUser(UID);
             }
             else { // equals o
-                u = "O";
                 n = oDAO.getUser(UID);  
             }
 
-            if (u.equals("V"))
-                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
-            else if (u.equals("C"))
-                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
+            if (userType.equals("V"))
+                return new ResponseEntity<User>((VolunteerUser)v, HttpStatus.OK);
+            else if (userType.equals("C"))
+                return new ResponseEntity<User>((CompanyUser)c, HttpStatus.OK);
             else
-                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
+                return new ResponseEntity<User>((NPOUser)n, HttpStatus.OK);
         }
         catch(IOException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        try {
+            String userType = user.getUID().substring(0, 1);
+
+            User createdUser;
+
+            if (userType.equals("V"))
+                createdUser = vDAO.createUser((VolunteerUser) user);
+            else if (userType.equals("C"))
+                createdUser = cDAO.createUser((CompanyUser) user);
+            else // equals o
+                createdUser = oDAO.createUser((NPOUser) user);  
+
+            if(createdUser == null)
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            else
+                return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
+        }
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

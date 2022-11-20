@@ -19,4 +19,6 @@ public interface NPOUserDAO {
     NPOUser updateUser(NPOUser updatedUser) throws IOException;
 
     NPOUser login(String username, String password);
+    
+    NPOUser createUser(NPOUser u) throws IOException;
 }

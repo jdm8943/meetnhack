@@ -12,4 +12,6 @@ public interface VolunteerUserDAO {
     VolunteerUser updateUser(VolunteerUser updatedUser) throws IOException;
 
     VolunteerUser login(String username, String password);
+
+    VolunteerUser createUser(VolunteerUser u) throws IOException;
 }

@@ -10,4 +10,6 @@ public interface CompanyUserDAO {
     CompanyUser updateUser(CompanyUser updatedUser) throws IOException;
 
     CompanyUser login(String username, String password);
+
+    CompanyUser createUser(CompanyUser u) throws IOException;
 }
