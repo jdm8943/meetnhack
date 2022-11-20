@@ -10,19 +10,23 @@ public class VolunteerUser extends User {
     private int currentPoints;
     @JsonProperty("level") 
     private double level;
-    @JsonProperty("claimedDiscountID") 
-    private Discount[] claimedDiscountID;
+    @JsonProperty("claimedDiscounts") 
+    private Discount[] claimedDiscounts;
+    @JsonProperty("eventsJoined")
+    private Event[] eventsJoined; 
 
     public VolunteerUser(String UID, String username, String password, 
                         @JsonProperty("name") String name,
                         @JsonProperty("currentPoints") int currentPoints,
                         @JsonProperty("level") double level,
-                        @JsonProperty("claimedDiscountID") Discount[] claimedDiscountID) {
+                        @JsonProperty("claimedDiscounts") Discount[] claimedDiscounts,
+                        @JsonProperty("eventsJoined") Event[] eventsJoined) {
         super(UID, username, password);
         this.name = name;
         this.currentPoints = currentPoints;
         this.level = level;
-        this.claimedDiscountID = claimedDiscountID;
+        this.claimedDiscounts = claimedDiscounts; 
+        this.eventsJoined = eventsJoined;
     }
 
     public String getName() {
