@@ -1,4 +1,7 @@
-<p-menubar styleClass="test" [model]="items">
+<p-menubar styleClass="test">
+    <a routerLink="/events" *ngIf="loggedInID"><button pButton type="button" label="Events" *ngIf="loggedInID"></button></a>
+    <a routerLink="/login"><button pButton type="button" label="Login"></button></a>
+    
 </p-menubar>
 <h1></h1>
 
