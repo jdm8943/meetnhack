@@ -54,19 +54,14 @@ public class VolunteerUser extends User {
     public int completeEvent(Event event) {
         int added = -1;
 
-        System.out.println("start");
-
         for (Event e : eventsJoined) {
-            System.out.println("start 1");
             if (e.getEventID() == event.getEventID()) {
-                System.out.println("found");
                 currentPoints += event.getPoints();
                 level += event.getPoints()/1000;
                 added = event.getPoints();
                 eventsJoined.remove(e);
                 break;
             }
-            System.out.println("not found");
         }
         return added;
     }

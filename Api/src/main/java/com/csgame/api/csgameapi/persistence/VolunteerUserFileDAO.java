@@ -54,11 +54,6 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
     public VolunteerUser getVUser(String UID) throws IOException {
         synchronized (users) {
             VolunteerUser gotUser = users.get(UID);
-            // System.out.println(gotUser.getName());
-            // System.out.println(gotUser.getCurrentPoints());
-            // System.out.println(gotUser.getLevel());
-            // System.out.println(gotUser.getClaimedDiscounts());
-            // System.out.println(gotUser.getEventsJoined());
             return gotUser;
         }
     }
@@ -85,15 +80,8 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
         VolunteerUser[] userArray = objectMapper.readValue(new File(filename), VolunteerUser[].class);
 
         for (VolunteerUser user : userArray) {
-            System.out.println(user.getUID().substring(0, 1).equals("V"));
             if (user.getUID().substring(0, 1).equals("V")){
                 users.put(user.getUID(), user);
-                System.out.println(user.getUID());
-                System.out.println(user.getName());
-                System.out.println(user.getCurrentPoints());
-                System.out.println(user.getLevel());
-                System.out.println(user.getClaimedDiscounts());
-                System.out.println(user.getEventsJoined());
             }
         }
 
