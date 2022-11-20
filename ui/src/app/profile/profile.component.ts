@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
   getUserInfo() {
     this.userService.getUser((this.app.loggedInID || '').toString()).subscribe(user => {
       this.username = user.username;
-      this.points = user.points;
+      this.points = user.currentPoints;
     });
   }
 

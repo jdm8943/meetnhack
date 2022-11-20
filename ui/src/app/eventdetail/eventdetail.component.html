@@ -9,9 +9,8 @@
         <button pButton id="backButton" type="button" class="p-button-outlined p-button-secondary p-button-rounded"
             label="Go Back" (click)="goBack()"></button>
         <button *ngIf="app.loggedInID && app.loggedInID[0]==='V'" pButton id="joinButton" type="button"
-            class="p-button p-button-rounded" label="Join" (click)="join()" [disabled]="joined"></button>
+            class="p-button p-button-rounded" label="Join" (click)="join()"></button>
         <button *ngIf="app.loggedInID && app.loggedInID[0]==='V'" pButton id="successButton" type="button"
-            class="p-button-success p-button-rounded" label="Complete" (click)="complete()"
-            [disabled]="!joined"></button>
+            class="p-button-success p-button-rounded" label="Complete" (click)="complete()"></button>
     </div>
 </body>
