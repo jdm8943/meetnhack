@@ -1,5 +1,5 @@
 <h3>Events:</h3>
-
+<!-- works -->
 <div>
     <div *ngFor="let orgEvent of orgEvents">
         <div *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O' && orgEvent.orgID === 'O13'))">
