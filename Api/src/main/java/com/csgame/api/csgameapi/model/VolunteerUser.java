@@ -15,7 +15,7 @@ public class VolunteerUser extends User {
     @JsonProperty("eventsJoined")
     private Event[] eventsJoined; 
 
-    public VolunteerUser(String UID, String username, String password, 
+    public VolunteerUser(@JsonProperty("UID")String UID, @JsonProperty("username")String username, @JsonProperty("password")String password, 
                         @JsonProperty("name") String name,
                         @JsonProperty("currentPoints") int currentPoints,
                         @JsonProperty("level") double level,
