@@ -16,5 +16,5 @@ export class LoginComponent implements OnInit {
     this.userService.getUser("V0")
       .subscribe(user => this.username = user.username);
   }
-
+  
 }
