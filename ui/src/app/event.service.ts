@@ -17,7 +17,6 @@ export class EventService {
   constructor(private http: HttpClient) { }
 
   addEvent(event: OrgEvent): Observable<OrgEvent> {
-    console.log(event);
     return this.http.post<OrgEvent>(this.eventUrl, event, this.httpOptions);
   }
 }

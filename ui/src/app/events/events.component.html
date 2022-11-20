@@ -3,8 +3,8 @@
 <div>
     <ul>
         <div *ngFor="let orgEvent of orgEvents">
-            <div
-                *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O' && orgEvent.orgID === 'O13'))">
+            <div *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || 
+                (app.loggedInID[0]==='O'))">
                 <a routerLink="/events/{{orgEvent.eventID}}">
                     <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
                 </a>
