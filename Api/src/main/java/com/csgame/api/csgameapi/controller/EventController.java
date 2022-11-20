@@ -96,10 +96,11 @@ public class EventController {
 
     /**
      * Responds to the GET request for all {@linkplain Event events} whose name
-     * contains the text in eventName
+     * contains the text in or whose orgID matches the search term
      * 
-     * @param eventName The name parameter which contains the text used to find the
-     *                  {@link Event events}
+     * @param searchTerm The search parameter which contains the text used to find
+     *                   the
+     *                   {@link Event events} by name or organization
      * 
      * @return ResponseEntity with array of {@link Event event} objects (may be
      *         empty) and
@@ -107,14 +108,45 @@ public class EventController {
      *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
      *         <p>
      *         Example: Find all events that contain the text "ma"
-     *         GET http://localhost:8080/events/?name=ma
+     *         GET http://localhost:8080/events/?eventName=ma OR
+     *         GET http://localhost:8080/events/?orgID=O45
      */
     @GetMapping("/")
     public ResponseEntity<Event[]> searchEvents(@RequestParam String eventName) {
-        LOG.info("GET /events/?eventName=" + eventName);
+        LOG.info("GET /events/?name=" + eventName);
 
         try {
             Event[] events = EventDao.findEvents(eventName);
+            return new ResponseEntity<Event[]>(events, HttpStatus.OK);
+        } catch (IOException e) {
+            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    /**
+     * Responds to the GET request for all {@linkplain Event events} whose name
+     * contains the text in or whose orgID matches the search term
+     * 
+     * @param searchTerm The search parameter which contains the text used to find
+     *                   the
+     *                   {@link Event events} by name or organization
+     * 
+     * @return ResponseEntity with array of {@link Event event} objects (may be
+     *         empty) and
+     *         HTTP status of OK<br>
+     *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
+     *         <p>
+     *         Example: Find all events that contain the text "ma"
+     *         GET http://localhost:8080/events/?eventName=ma OR
+     *         GET http://localhost:8080/events/?orgID=O45
+     */
+    @GetMapping("/org/")
+    public ResponseEntity<Event[]> searchEventsOrg(@RequestParam String orgID) {
+        LOG.info("GET /events/org/?orgID=" + orgID);
+
+        try {
+            Event[] events = EventDao.findEvents(orgID);
             return new ResponseEntity<Event[]>(events, HttpStatus.OK);
         } catch (IOException e) {
             LOG.log(Level.SEVERE, e.getLocalizedMessage());

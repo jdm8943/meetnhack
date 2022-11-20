@@ -1,5 +1,5 @@
-export interface Event {
-    eventID: string;
+export interface OrgEvent {
+    eventID: number;
     orgID: string;
     eventName: string;
     description: string;
