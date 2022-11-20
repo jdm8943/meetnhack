@@ -16,27 +16,51 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 import com.csgame.api.csgameapi.persistence.UserDAO;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.csgame.api.csgameapi.persistence.VolunteerUserDAO;
 import com.csgame.api.csgameapi.model.User;
+
+/**
+ * Handles the REST API requests for the User resource
+ * <p>
+ * {@literal @}RestController Spring annotation identifies this class as a REST
+ * API
+ * method handler to the Spring framework
+ * 
+ * @author Team Sol Kumar
+ */
 
 @RestController
 @RequestMapping("users")
 public class UserController {
     private UserDAO userDao;
+    private VolunteerUserDAO volunteerDAO;
 
-    public UserController(UserDAO userDao) {
+    public UserController(UserDAO userDao, VolunteerUserDAO volunteerDAO) {
         this.userDao = userDao;
+        this.volunteerDAO = volunteerDAO;
     }
 
     @GetMapping("/{UID}")
     public ResponseEntity<User> getUser(@PathVariable String UID) {
+        
         try {
             User user = userDao.getUser(UID);
 
             if (user != null)
                 return new ResponseEntity<User>(user, HttpStatus.OK);
-            else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            else{
+                try {
+                    user = volunteerDAO.getUser(UID);
+        
+                    if (user != null)
+                        return new ResponseEntity<User>(user, HttpStatus.OK);
+                    else
+                        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                }
+                catch(IOException e) {
+                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            }
         }
         catch(IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
