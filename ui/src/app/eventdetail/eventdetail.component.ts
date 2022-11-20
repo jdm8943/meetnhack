@@ -4,6 +4,7 @@ import { AppComponent } from '../app.component';
 import { EventService } from '../events.service';
 import { OrgEvent } from '../orgEvent';
 
+
 @Component({
   selector: 'app-eventdetail',
   templateUrl: './eventdetail.component.html',
