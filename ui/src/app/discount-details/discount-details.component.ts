@@ -20,13 +20,13 @@ export class DiscountDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.app.loggedIn();
-    
+    this.getDiscount();
   }
 
   getDiscount(): void{
     const discountid = parseInt(this.route.snapshot.paramMap.get('id')!, 10) || -1;
-    this.discountService.getDiscount(discountid).
-      subscribe(disc => {this.discount = disc; console.log("ASF"); console.log(disc);})
+    this.discountService.getDiscount(discountid)
+      .subscribe(disc => {this.discount = disc; console.log("ASF"); console.log(disc);})
 
   }
 
