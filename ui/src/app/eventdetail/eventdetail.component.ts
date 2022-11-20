@@ -45,15 +45,12 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
 
-  join(eventID: number): void {
-    const eventid = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+  join(): void {
     console.log("USER SERVICE: ", this.userService.joinEvent(this.UID, this.eventID).subscribe());
   }
 
-  complete(eventID: number): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    console.log("USER SERVIEC: ", this.userService.completeEvent(String(id), eventID).subscribe());
-
+  complete(): void {
+    console.log("USER SERVIEC: ", this.userService.completeEvent(this.UID, this.eventID).subscribe());
   }
 
   save(): void {
