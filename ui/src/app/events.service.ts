@@ -7,7 +7,7 @@ import { OrgEvent } from './orgEvent';
 
 
 @Injectable({ providedIn: 'root' })
-export class EventService {
+export class EventsService {
 
   private eventsUrl = 'http://localhost:8080/events'
 
@@ -59,6 +59,7 @@ export class EventService {
 
   /** POST: add a new event to the server */
   addEvent(orgEvent: OrgEvent): Observable<OrgEvent> {
+    console.log("add event called")
     return this.http.post<OrgEvent>(this.eventsUrl, orgEvent, this.httpOptions).pipe(
       catchError(this.handleError<OrgEvent>('addEvent'))
     );

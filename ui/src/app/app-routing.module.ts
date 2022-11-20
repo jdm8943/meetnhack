@@ -3,14 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './events/events.component';
 import { LoginComponent } from './login/login.component';
 import { AddEventComponent } from './add-event/add-event.component';
+import { DiscountsComponent } from './discounts/discounts.component';
 import { EventDetailComponent } from './eventdetail/eventdetail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'events', component: EventsComponent },
-  { path: 'eventdetail/:id', component: EventDetailComponent },
-  { path: 'add-event', component: AddEventComponent, }
+  { path: 'events/:id', component: EventDetailComponent },
+  { path: 'add-event', component: AddEventComponent, },
+  { path: 'discounts', component: DiscountsComponent, }
 ];
 
 @NgModule({

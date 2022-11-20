@@ -1,7 +1,8 @@
 export interface OrgEvent {
     eventID: number;
-    orgID: string;
+    orgID: number;
     eventName: string;
     description: string;
     points: number;
+    date: string;
 }

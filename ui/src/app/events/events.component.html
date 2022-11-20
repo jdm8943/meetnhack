@@ -1,9 +1,14 @@
 <h3>Events:</h3>
 <!-- works -->
 <div>
-    <div *ngFor="let orgEvent of orgEvents">
-        <div *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O' && orgEvent.orgID === 'O13'))">
-            <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
+    <ul>
+        <div *ngFor="let orgEvent of orgEvents">
+            <div
+                *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O' && orgEvent.orgID===thisOrgID))">
+                <a routerLink="/events/{{orgEvent.eventID}}">
+                    <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
+                </a>
+            </div>
         </div>
-    </div>
+    </ul>
 </div>
