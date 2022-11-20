@@ -10,6 +10,16 @@
         "eventsJoined": null
     },
     {
+        "UID": "V4",
+        "username": "mommy",
+        "password": "elise",
+        "name": "Elise",
+        "currentPoints": 100,
+        "level": 100,
+        "claimedDiscounts": null,
+        "eventsJoined": null
+    },
+    {
         "UID": "C1",
         "username": "TestCompany",
         "password": "password1",

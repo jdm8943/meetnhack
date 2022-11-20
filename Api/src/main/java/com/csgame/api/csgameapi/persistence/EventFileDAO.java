@@ -185,7 +185,8 @@ public class EventFileDAO implements EventDAO {
             // We create a new event object because the id field is immutable
             // and we need to assign the next unique id
             Event newEvent = new Event(nextId(), event.getOrgID(),
-                    event.getEventName(), event.getDescription(), event.getPoints(), event.getDate());
+                    event.getEventName(), event.getDescription(), 
+                    event.getPoints(), event.getDate());
             events.put(newEvent.getEventID(), newEvent);
             save(); // may throw an IOException
             return newEvent;
@@ -199,11 +200,15 @@ public class EventFileDAO implements EventDAO {
     public Event updateEvent(Event event) throws IOException {
         synchronized (events) {
             if (events.containsKey(event.getEventID()) == true) {
-                Event newProd = new Event(event.getEventID(), event.getOrgID(), event.getEventName(),
-                        event.getDescription(), event.getPoints(), event.getDate());
-                events.put(event.getEventID(), newProd);
+                Event newProd = new Event(event.getEventID(), 
+                                        event.getOrgID(), 
+                                        event.getEventName(),
+                                        event.getDescription(), 
+                                        event.getPoints(), 
+                                        event.getDate());
+                events.put(newProd.getEventID(), newProd);
                 save(); // may throw an IOException
-                return event;
+                return newProd;
             }
 
             return null; // event does not exist
