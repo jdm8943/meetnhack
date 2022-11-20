@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.User;
+import com.csgame.api.csgameapi.model.VolunteerUser;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,9 +40,7 @@ public class UserFileDAO implements UserDAO {
         for (User u : users.values())
             userArray.add(u);
 
-        User[] array = (User[]) userArray.toArray();
-
-        return array;
+        return userArray.toArray(new User[userArray.size()]);
     }
 
     public User getUser(String UID) {
@@ -74,7 +73,7 @@ public class UserFileDAO implements UserDAO {
         User[] userArray = objectMapper.readValue(new File(filename), User[].class);
 
         for (User user : userArray)
-            users.put(user.getUsername(), user);
+            users.put(user.getUID(), user);
 
         return true;
     }
@@ -91,7 +90,15 @@ public class UserFileDAO implements UserDAO {
         return null;
     }
 
-    public User updateUser(User user) {
-        return user;
+    public User updateUser(User user) throws IOException {
+        synchronized(users) {
+            if (users.containsKey(user.getUID()) == false)
+                return null;  // user does not exist
+
+            users.put(user.getUID(), user);
+            save(); // may throw an IOException
+            
+            return user;
+        }
     }
 }

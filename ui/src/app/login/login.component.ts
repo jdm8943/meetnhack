@@ -13,6 +13,7 @@ import { AppComponent } from '../app.component';
 })
 export class LoginComponent implements OnInit {
   username: string = "hello";
+  password: string = "hello";
 
   constructor(
     private route: ActivatedRoute,
@@ -24,8 +25,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUser("V0")
-      .subscribe(user => this.username = user.username);
+    // this.userService.getUser("V0")
+    //   .subscribe(user => {this.username = user.username; this.password = user.password});
 
     this.primengConfig.ripple = true;
   }
