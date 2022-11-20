@@ -57,8 +57,6 @@ public class VolunteerUser extends User {
     public int completeEvent(Event event) {
         int added = -1;
 
-        System.out.println("start");
-
         for (Event e : eventsJoined) {
             if (e.getEventID() == event.getEventID()) {
                 currentPoints += event.getPoints();

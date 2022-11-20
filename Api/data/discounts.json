@@ -1,23 +1,37 @@
 [
     {
         "id": 1,
-        "name": "10% Walmart",
+        "name": "10% Wegmans",
         "levelRequired": 2,
         "pointsRequired": 200,
-        "companyId": 0
+        "companyId": 15
     },
     {
-        "id": 4,
-        "name": "15% Walmart",
+        "id": 2,
+        "name": "15% Wegmans",
         "levelRequired": 3,
         "pointsRequired": 300,
-        "companyId": 0
+        "companyId": 15
     },
     {
         "id": 3,
-        "name": "5% Target",
+        "name": "15% Bill Gray's Regional Iceplex",
         "levelRequired": 1,
-        "pointsRequired": 100,
-        "companyId": 2
+        "pointsRequired": 150,
+        "companyId": 12
+    },
+    {
+        "id": 4,
+        "name": "25% Salvatore's Old Fashioned Pizzeria",
+        "levelRequired": 2,
+        "pointsRequired": 350,
+        "companyId": 7
+    },
+    {
+        "id": 5,
+        "name": "10% Target",
+        "levelRequired": 1,
+        "pointsRequired": 150,
+        "companyId": 4
     }
 ]
