@@ -45,10 +45,10 @@ public class UserController {
     private EventDAO eDAO;
 
     public UserController(UserDAO userDAO,
-                            VolunteerUserDAO volunteerDAO,
-                            CompanyUserDAO companyDAO,
-                            NPOUserDAO npoDAO,
-                            EventDAO eventDAO) {
+            VolunteerUserDAO volunteerDAO,
+            CompanyUserDAO companyDAO,
+            NPOUserDAO npoDAO,
+            EventDAO eventDAO) {
         this.uDAO = userDAO;
         this.vDAO = volunteerDAO;
         this.cDAO = companyDAO;
@@ -67,24 +67,21 @@ public class UserController {
             CompanyUser c = null;
             NPOUser n = null;
 
-            if (userType.equals("V")){
+            if (userType.equals("V")) {
                 v = (VolunteerUser) vDAO.getVUser(UID);
-            }
-            else if (userType.equals("C")){
+            } else if (userType.equals("C")) {
                 c = cDAO.getUser(UID);
-            }
-            else { // equals o
-                n = oDAO.getUser(UID);  
+            } else { // equals o
+                n = oDAO.getUser(UID);
             }
 
             if (userType.equals("V"))
-                return new ResponseEntity<User>((VolunteerUser)v, HttpStatus.OK);
+                return new ResponseEntity<User>((VolunteerUser) v, HttpStatus.OK);
             else if (userType.equals("C"))
-                return new ResponseEntity<User>((CompanyUser)c, HttpStatus.OK);
+                return new ResponseEntity<User>((CompanyUser) c, HttpStatus.OK);
             else
-                return new ResponseEntity<User>((NPOUser)n, HttpStatus.OK);
-        }
-        catch(IOException e) {
+                return new ResponseEntity<User>((NPOUser) n, HttpStatus.OK);
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -101,53 +98,51 @@ public class UserController {
             else if (userType.equals("C"))
                 createdUser = cDAO.createUser((CompanyUser) user);
             else // equals o
-                createdUser = oDAO.createUser((NPOUser) user);  
+                createdUser = oDAO.createUser((NPOUser) user);
 
-            if(createdUser == null)
+            if (createdUser == null)
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             else
                 return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     // @PatchMapping("")
     // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
-    //     try {
-    //         String UID = requestBody.get("UID").toString(); // EX: UID = "V0" w/ quotes
+    // try {
+    // String UID = requestBody.get("UID").toString(); // EX: UID = "V0" w/ quotes
 
-    //         String userType = UID.substring(1, 2);
-    //         User userToUpdate;
+    // String userType = UID.substring(1, 2);
+    // User userToUpdate;
 
-    //         if (userType.equals("V")) {
-    //             userToUpdate = vDAO.getUser(UID);
-                
-    //             if (requestBody.get("currentPoints") != null){
-    //                 String points = requestBody.get("currentPoints").toString();
-    //                 int pointsInt = Integer.parseInt(points.substring(1, points.length() - 1));
-    //                 userToUpdate.set
-    //             }
-    //         }
-    //         else
-    //             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //     }
-    //     catch (IOException e)
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // if (userType.equals("V")) {
+    // userToUpdate = vDAO.getUser(UID);
+
+    // if (requestBody.get("currentPoints") != null){
+    // String points = requestBody.get("currentPoints").toString();
+    // int pointsInt = Integer.parseInt(points.substring(1, points.length() - 1));
+    // userToUpdate.set
     // }
-    
+    // }
+    // else
+    // return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    // }
+    // catch (IOException e)
+    // return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+
     @PostMapping("/login")
     public ResponseEntity<User> loginUser(@RequestBody User user) {
         try {
             User checkUser = uDAO.login(user.getUsername(), user.getPassword());
-            
-            if(checkUser != null)
+
+            if (checkUser != null)
                 return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -167,18 +162,16 @@ public class UserController {
 
             if (u == null)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            
+
             Event e = eDAO.getEvent(eventID);
 
             if (u.addEvent(e)) {
                 uDAO.updateUser(u);
                 return new ResponseEntity<>(u, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
-            else {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -198,19 +191,16 @@ public class UserController {
 
             if (u == null)
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            
-            Event e = eDAO.getEvent(eventID);
 
+            Event e = eDAO.getEvent(eventID);
 
             if (u.completeEvent(e) > 0) {
                 uDAO.updateUser(u);
                 return new ResponseEntity<>(u, HttpStatus.OK);
-            }
-            else {
+            } else {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-        }
-        catch(IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

@@ -8,23 +8,23 @@ public class VolunteerUser extends User {
 
     @JsonProperty("name")
     private String name;
-    @JsonProperty("currentPoints") 
+    @JsonProperty("currentPoints")
     private int currentPoints;
-    @JsonProperty("level") 
+    @JsonProperty("level")
     private double level;
-    @JsonProperty("claimedDiscounts") 
+    @JsonProperty("claimedDiscounts")
     private ArrayList<Discount> claimedDiscounts;
     @JsonProperty("eventsJoined")
-    private ArrayList<Event> eventsJoined; 
+    private ArrayList<Event> eventsJoined;
 
-    public VolunteerUser(@JsonProperty("UID")String UID,
-                         @JsonProperty("username")String username, 
-                         @JsonProperty("password")String password, 
-                        @JsonProperty("name") String name,
-                        @JsonProperty("currentPoints") int currentPoints,
-                        @JsonProperty("level") double level,
-                        @JsonProperty("claimedDiscounts") ArrayList<Discount> claimedDiscounts,
-                        @JsonProperty("eventsJoined") ArrayList<Event> eventsJoined) {
+    public VolunteerUser(@JsonProperty("UID") String UID,
+            @JsonProperty("username") String username,
+            @JsonProperty("password") String password,
+            @JsonProperty("name") String name,
+            @JsonProperty("currentPoints") int currentPoints,
+            @JsonProperty("level") double level,
+            @JsonProperty("claimedDiscounts") ArrayList<Discount> claimedDiscounts,
+            @JsonProperty("eventsJoined") ArrayList<Event> eventsJoined) {
         super(UID, username, password);
         this.name = name;
         this.currentPoints = currentPoints;
@@ -46,11 +46,14 @@ public class VolunteerUser extends User {
     }
 
     public boolean addEvent(Event event) {
-        eventsJoined.add(event);
-        return true;
+        if (!eventsJoined.contains(event)) {
+            eventsJoined.add(event);
+            return true;
+        }
+        return false;
     }
 
-    //Returns -1 if not added
+    // Returns -1 if not added
     public int completeEvent(Event event) {
         int added = -1;
 

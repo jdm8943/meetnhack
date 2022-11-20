@@ -94,12 +94,12 @@ public class CompanyUserFileDAO implements CompanyUserDAO {
         nextID += 1;
         return id;
     }
-    
+
     public CompanyUser createUser(CompanyUser u) throws IOException {
-        synchronized(users) {
-            CompanyUser user = new CompanyUser("C" + nextID(), u.getUsername(), 
-                                                u.getPassword(), u.getCompanyName(), 
-                                                u.getCompanyDiscounts());
+        synchronized (users) {
+            CompanyUser user = new CompanyUser("C" + nextID(), u.getUsername(),
+                    u.getPassword(), u.getCompanyName(),
+                    u.getCompanyDiscounts());
             users.put(user.getUID(), user);
             save();
             return user;
