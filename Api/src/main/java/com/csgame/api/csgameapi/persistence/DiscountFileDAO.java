@@ -14,13 +14,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class DiscountFileDAO implements DiscountDAO {
-    public Map<Integer, Discount> discounts; 
-    private ObjectMapper objectMapper;  
+    public Map<Integer, Discount> discounts;
+    private ObjectMapper objectMapper;
     private static int nextId;
     private String filename;
 
-
-    public DiscountFileDAO(@Value("${discounts.file}") String filename,ObjectMapper objectMapper) throws IOException {
+    public DiscountFileDAO(@Value("${discounts.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
@@ -36,10 +35,10 @@ public class DiscountFileDAO implements DiscountDAO {
         discounts = new TreeMap<>();
         nextId = 0;
 
-        Discount[] discountArray = objectMapper.readValue(new File(filename),Discount[].class);
+        Discount[] discountArray = objectMapper.readValue(new File(filename), Discount[].class);
 
         for (Discount discount : discountArray) {
-            discounts.put(discount.getId(),discount);
+            discounts.put(discount.getId(), discount);
             if (discount.getId() > nextId)
                 nextId = discount.getId();
         }
@@ -49,7 +48,7 @@ public class DiscountFileDAO implements DiscountDAO {
 
     @Override
     public Discount getDiscount(int id) throws IOException {
-        synchronized(discounts) {
+        synchronized (discounts) {
             if (discounts.containsKey(id))
                 return discounts.get(id);
             else
@@ -58,20 +57,32 @@ public class DiscountFileDAO implements DiscountDAO {
     }
 
     @Override
+    public Discount[] getDiscounts() throws IOException {
+        synchronized (discounts) {
+            return getDiscountsArray();
+        }
+    }
+
+    @Override
     public Discount createDiscount(Discount discount) throws IOException {
-        synchronized(discounts) {
-            Discount newDiscount = new Discount(nextId(), discount.geName(), discount.getLevelRequired(), discount.getPointsRequired(), discount.getCompanyId());
-            discounts.put(newDiscount.getId(),newDiscount);
+        synchronized (discounts) {
+            Discount newDiscount = new Discount(nextId(), discount.getName(), discount.getLevelRequired(),
+                    discount.getPointsRequired(), discount.getCompanyId());
+            discounts.put(newDiscount.getId(), newDiscount);
             save();
             return newDiscount;
         }
+    }
+
+    private Discount[] getDiscountsArray() { // if containsText == null, no filter
+        return getDiscountsArray(null);
     }
 
     private Discount[] getDiscountsArray(String containsText) { // if containsText == null, no filter
         ArrayList<Discount> discountArrayList = new ArrayList<>();
 
         for (Discount discount : discounts.values()) {
-            if (containsText == null || discount.geName().contains(containsText)) {
+            if (containsText == null || discount.getName().contains(containsText)) {
                 discountArrayList.add(discount);
             }
         }
@@ -84,33 +95,31 @@ public class DiscountFileDAO implements DiscountDAO {
     private boolean save() throws IOException {
         Discount[] userArray = getDiscountsArray(null);
 
-        objectMapper.writeValue(new File(filename),userArray);
+        objectMapper.writeValue(new File(filename), userArray);
         return true;
     }
 
     @Override
     public Discount updateDiscount(Discount discount) throws IOException {
-        synchronized(discounts) {
-            if (discounts.containsKey(discount.getId()) == true){
+        synchronized (discounts) {
+            if (discounts.containsKey(discount.getId()) == true) {
                 discounts.put(discount.getId(), discount);
                 save(); // may throw an IOException
                 return discount;
-            }  
+            }
         }
         return null; // product does not exist
     }
 
     @Override
     public boolean deleteDiscount(int id) throws IOException {
-        synchronized(discounts) {
+        synchronized (discounts) {
             if (discounts.containsKey(id)) {
                 discounts.remove(id);
                 return save();
-            }
-            else
+            } else
                 return false;
         }
     }
 
-    
 }
