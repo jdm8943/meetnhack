@@ -53,14 +53,13 @@ public class UserController {
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
             String userType = UID.substring(0, 0);
-            int idNumber = Integer.parseInt(UID.substring(1));
-
+            
             User u;
-                    
+
             if (userType.equals("v"))
                 u = vDAO.getUser(UID);
 
-            else (userType.equals("v"))
+            else if (userType.equals("v"))
                 u = cDAO.getUser(UID);
 
             else { // equals o
