@@ -9,6 +9,15 @@
         "date": "11-19-2022"
     },
     {
+        "eventID": 6,
+        "orgID": 5,
+        "eventName": "Resuce Kittens",
+        "description": "Resuce kittens from shelters!",
+        "points": 250,
+        "attendees": [],
+        "date": "11-19-2022"
+    },
+    {
         "eventID": 11,
         "orgID": 13,
         "eventName": "Forest Clean Up",

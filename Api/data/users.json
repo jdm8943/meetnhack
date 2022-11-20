@@ -3,19 +3,81 @@
         "UID": "C1",
         "username": "TestCompany",
         "password": "password1",
+        "companyName": "TestCompanyName",
+        "companyDiscounts": [],
+        "uid": "C1"
+    },
+    {
+        "UID": "C4",
+        "username": "TargetUser",
+        "password": "red",
+        "companyName": "Target",
+        "companyDiscounts": [],
+        "uid": "C1"
+    },
+    {
+        "UID": "C7",
+        "username": "salvatore",
+        "password": "pizza",
+        "companyName": "Salvatore's Old Fashioned Pizzeria",
+        "companyDiscounts": [],
+        "uid": "C1"
+    },
+    {
+        "UID": "C11",
+        "username": "lucci",
+        "password": "pizza",
+        "companyName": "Lucci's Pizza & Grill",
+        "companyDiscounts": [],
+        "uid": "C1"
+    },
+    {
+        "UID": "C15",
+        "username": "weggys",
+        "password": "betterthanwalmart",
+        "companyName": "Wegmans",
+        "companyDiscounts": [],
+        "uid": "C1"
+    },
+    {
+        "UID": "C12",
+        "username": "bill",
+        "password": "ice",
+        "companyName": "Bill Gray's Regional Iceplex",
+        "companyDiscounts": [],
         "uid": "C1"
     },
     {
         "UID": "O2",
         "username": "TestOrg",
         "password": "password1",
+        "orgName": "TestOrgName",
+        "NPOevents": [],
         "uid": "O2"
     },
     {
-        "UID": "V0",
-        "username": "TestVolunteer",
-        "password": "password",
-        "uid": "V0"
+        "UID": "O15",
+        "username": "feeding",
+        "password": "password1",
+        "orgName": "Feeding America",
+        "NPOevents": [],
+        "uid": "O2"
+    },
+    {
+        "UID": "O16",
+        "username": "health",
+        "password": "password1",
+        "orgName": "American Red Cross",
+        "NPOevents": [],
+        "uid": "O2"
+    },
+    {
+        "UID": "O19",
+        "username": "clubs",
+        "password": "password1",
+        "orgName": "Boys & Girls Clubs of America",
+        "NPOevents": [],
+        "uid": "O2"
     },
     {
         "UID": "V4",
@@ -37,5 +99,35 @@
             }
         ],
         "uid": "V4"
+    },
+    {
+        "UID": "V1",
+        "username": "sol",
+        "password": "kumar",
+        "name": "Sohail",
+        "currentPoints": 450,
+        "level": 0.0,
+        "claimedDiscounts": [],
+        "eventsJoined": []
+    },
+    {
+        "UID": "V2",
+        "username": "munson",
+        "password": "rit",
+        "name": "David Munson",
+        "currentPoints": 4500,
+        "level": 4.0,
+        "claimedDiscounts": [],
+        "eventsJoined": []
+    },
+    {
+        "UID": "V3",
+        "username": "JackyBoy",
+        "password": "laugh",
+        "name": "Jack",
+        "currentPoints": 2050,
+        "level": 2.0,
+        "claimedDiscounts": [],
+        "eventsJoined": []
     }
 ]
