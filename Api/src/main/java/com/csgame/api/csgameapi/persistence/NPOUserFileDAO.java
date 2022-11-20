@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.NPOUser;
 
+@Component
 public class NPOUserFileDAO implements NPOUserDAO {
     Map<String, NPOUser> users;
 
@@ -20,7 +21,7 @@ public class NPOUserFileDAO implements NPOUserDAO {
 
     private String filename;
 
-    public NPOUserFileDAO(@Value("${npoUsers.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public NPOUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
 
@@ -67,7 +68,8 @@ public class NPOUserFileDAO implements NPOUserDAO {
         NPOUser[] userArray = objectMapper.readValue(new File(filename), NPOUser[].class);
 
         for (NPOUser user : userArray)
-            users.put(user.getUsername(), user);
+            if (user.getUID().substring(0, 0).equals("O"))
+                users.put(user.getUsername(), user);
 
         return true;
     }

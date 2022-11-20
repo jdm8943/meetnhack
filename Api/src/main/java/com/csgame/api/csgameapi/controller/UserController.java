@@ -56,14 +56,14 @@ public class UserController {
             
             User u;
 
-            if (userType.equals("v"))
+            if (userType.equals("V"))
                 u = vDAO.getUser(UID);
 
-            else if (userType.equals("v"))
+            else if (userType.equals("C"))
                 u = cDAO.getUser(UID);
 
             else { // equals o
-                u = oDAO.getUser(UID);
+                u = oDAO.getUser(UID);  
             }
 
             if (u != null)

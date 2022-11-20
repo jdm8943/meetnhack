@@ -13,14 +13,15 @@ import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.CompanyUser;
 
-public class CompanyUserFileDAO {
+@Component
+public class CompanyUserFileDAO implements CompanyUserDAO {
     Map<String, CompanyUser> users;
 
     private ObjectMapper objectMapper;
 
     private String filename;
 
-    public CompanyUserFileDAO(@Value("${companyUsers.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public CompanyUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
 
@@ -67,7 +68,8 @@ public class CompanyUserFileDAO {
         CompanyUser[] userArray = objectMapper.readValue(new File(filename), CompanyUser[].class);
 
         for (CompanyUser user : userArray)
-            users.put(user.getUsername(), user);
+            if (user.getUID().substring(0, 0).equals("C"))
+                users.put(user.getUsername(), user);
 
         return true;
     }

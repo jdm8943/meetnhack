@@ -2,6 +2,7 @@
     {
         "UID": "V0",
         "username": "TestVolunteer",
-        "password": "password"
+        "password": "password",
+        "orgName": "TestOrg"
     }
 ]
