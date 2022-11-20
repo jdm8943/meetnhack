@@ -1,6 +1,7 @@
 <body>
     <div *ngIf="orgEvent">
         <h2>{{orgEvent.eventName | uppercase}} Details</h2>
+        <label *ngIf="joined"><em>Already Joined!</em></label>
         <div>
             <p>{{orgEvent.description}}</p>
             <p>{{orgEvent.points}}</p>
@@ -8,8 +9,9 @@
         <button pButton id="backButton" type="button" class="p-button-outlined p-button-secondary p-button-rounded"
             label="Go Back" (click)="goBack()"></button>
         <button *ngIf="app.loggedInID && app.loggedInID[0]==='V'" pButton id="joinButton" type="button"
-            class="p-button p-button-rounded" label="Join" (click)="join()"></button>
+            class="p-button p-button-rounded" label="Join" (click)="join()" [disabled]="joined"></button>
         <button *ngIf="app.loggedInID && app.loggedInID[0]==='V'" pButton id="successButton" type="button"
-            class="p-button-success p-button-rounded" label="Complete" (click)="complete()"></button>
+            class="p-button-success p-button-rounded" label="Complete" (click)="complete()"
+            [disabled]="!joined"></button>
     </div>
 </body>
