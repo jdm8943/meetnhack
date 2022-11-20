@@ -3,7 +3,7 @@
 <div>
     <ul>
         <li *ngFor="let orgEvent of orgEvents">
-            <p>{{orgEvent.eventName}}</p>
+            <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
         </li>
     </ul>
 </div>
