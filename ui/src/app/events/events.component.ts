@@ -12,11 +12,15 @@ import { EventService } from '../events.service';
 export class EventsComponent implements OnInit {
   orgEvents: OrgEvent[] = [];
   showingDetail = false;
+  thisOrgID: Number | null = null;
 
   constructor(private eventService: EventService, public app: AppComponent) { }
 
   ngOnInit(): void {
     this.getEvents();
+    if(this.app.loggedInID && this.app.loggedInID[0]==='O'){
+      this.thisOrgID= Number(this.app.loggedInID.slice(1));
+    }
   }
 
   getEvents(): void {
