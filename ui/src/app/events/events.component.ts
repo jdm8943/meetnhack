@@ -11,6 +11,7 @@ import { EventService } from '../events.service';
 })
 export class EventsComponent implements OnInit {
   orgEvents: OrgEvent[] = [];
+  orgID!: number;
   showingDetail = false;
   thisOrgID: Number | null = null;
 
@@ -18,14 +19,18 @@ export class EventsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getEvents();
-    if(this.app.loggedInID && this.app.loggedInID[0]==='O'){
-      this.thisOrgID= Number(this.app.loggedInID.slice(1));
+    if (this.app.loggedInID && this.app.loggedInID[0] === 'O') {
+      this.thisOrgID = Number(this.app.loggedInID.slice(1));
     }
   }
 
   getEvents(): void {
     this.eventService.getEvents()
-      .subscribe(orgEvents => { this.orgEvents = orgEvents; console.log(orgEvents) });
+      .subscribe(orgEvents => {
+        this.orgEvents = orgEvents;
+        console.log(orgEvents);
+      });
+
   }
 
   showDetail(): void {

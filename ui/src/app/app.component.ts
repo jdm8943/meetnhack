@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,14 @@ export class AppComponent {
   title = 'Community Service Game';
 
   ngOnInit() {
-      this.loggedIn();
+    this.loggedIn();
   }
 
-  loggedIn(): void{
+  loggedIn(): void {
     this.loggedInID = localStorage.getItem('loginSessId');
   }
 
-  logout():void{
+  logout(): void {
     localStorage.removeItem('loginSessId');
     this.loggedIn();
   }
