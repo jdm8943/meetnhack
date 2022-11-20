@@ -1,9 +1,8 @@
 <div>
     <label> Discounts </label>
     <div *ngFor="let discount of discounts">
-        <div
-            *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O'))">
-            <a routerLink="/discounts/{{discount}"></a>
-        </div>
+        <a routerLink="/discounts/{{discount}}">
+            <button pButton type="button" label="{{discount.name}} : {{discount.pointsRequired}} points" class="p-button-outlined"></button>
+        </a>
     </div>
 </div>

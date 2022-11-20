@@ -18,7 +18,7 @@ export class DiscountsComponent implements OnInit {
   }
 
   getDiscounts(): void {
-    this.discountService.getDiscounts();
+    this.discountService.getDiscounts().subscribe(discount => this.discounts = discount);
   }
 
 }
