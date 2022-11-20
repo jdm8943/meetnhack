@@ -1,6 +1,8 @@
 <p-menubar styleClass="test">
     <a routerLink="/events" *ngIf="loggedInID"><button pButton type="button" label="Events" *ngIf="loggedInID[0]=='V'"></button></a>
-    <a routerLink="/add-event" *ngIf="loggedInID"><button pButton type="button" label="AEvents" *ngIf="loggedInID[0]=='O'"></button></a>
+    <a routerLink="/add-event" *ngIf="loggedInID"><button pButton type="button" label="OrgEvents" *ngIf="loggedInID[0]=='O'"></button></a>
+    <a routerLink="/discounts" *ngIf="loggedInID"><button pButton type="button" label="Discounts" *ngIf="loggedInID[0]=='V'"></button></a>
+    <a routerLink="/attending" *ngIf="loggedInID"><button pButton type="button" label="Attending" *ngIf="loggedInID[0]=='V'"></button></a>
     <a routerLink="/login"><button pButton type="button" label="Login"></button></a>
     
 </p-menubar>
