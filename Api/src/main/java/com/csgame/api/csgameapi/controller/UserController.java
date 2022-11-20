@@ -57,45 +57,40 @@ public class UserController {
     }
 
     @GetMapping("/{UID}")
-    public ResponseEntity<User> getUser(@PathVariable String UID) {
+    public ResponseEntity<VolunteerUser> getUser(@PathVariable String UID) {
         try {
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
             String userType = UID.substring(0, 1);
-            User u;
+            String u;
+            VolunteerUser v = null;
+            CompanyUser c = null;
+            NPOUser n = null;
 
-            if (userType.equals("V"))
-                u = vDAO.getUser(UID);
-            else if (userType.equals("C"))
-                u = cDAO.getUser(UID);
+            if (userType.equals("V")){
+                u = "V";
+                v = (VolunteerUser) vDAO.getVUser(UID);
+            }
+            else if (userType.equals("C")){
+                u = "C";
+                c = cDAO.getUser(UID);
+            }
             else { // equals o
-                u = oDAO.getUser(UID);  
+                u = "O";
+                n = oDAO.getUser(UID);  
             }
 
-            if (u != null)
-                return new ResponseEntity<User>(u, HttpStatus.OK);
+            if (u.equals("V"))
+                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
+            else if (u.equals("C"))
+                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
             else
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+                return new ResponseEntity<VolunteerUser>((VolunteerUser)v, HttpStatus.OK);
         }
         catch(IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    // @PostMapping("/login")
-    // public ResponseEntity<User> loginUser(@RequestBody User user){
-    //     try {
-            
-    //         // User checkUser = userDao.login(user.getUsername(), user.getPassword());
-    //         User checkUser = userDao.login(user.getUsername(), user.getPassword());
-    //         if(checkUser != null)
-    //             return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
-    //         else
-    //             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //     }catch(IOException e){
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
 
     // @PatchMapping("")
     // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
@@ -139,8 +134,6 @@ public class UserController {
     @PostMapping("/{UID}/{eventID}")
     public ResponseEntity<User> addEvent(@PathVariable String UID, @PathVariable int eventID) {
         try {
-            System.out.println("EEEEE " + UID + " " + eventID);
-
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
             String userType = UID.substring(0, 1);
@@ -156,14 +149,11 @@ public class UserController {
             
             Event e = eDAO.getEvent(eventID);
 
-            System.out.println("FFFF " + e.getEventName());
-
             if (u.addEvent(e)) {
-                System.out.println("e");
+                uDAO.updateUser(u);
                 return new ResponseEntity<>(u, HttpStatus.OK);
             }
             else {
-                System.out.println("f");
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }
@@ -175,8 +165,6 @@ public class UserController {
     @DeleteMapping("/{UID}/{eventID}")
     public ResponseEntity<User> completeEvent(@PathVariable String UID, @PathVariable int eventID) {
         try {
-            System.out.println("EEEEE " + UID + " " + eventID);
-
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
             String userType = UID.substring(0, 1);
@@ -192,14 +180,12 @@ public class UserController {
             
             Event e = eDAO.getEvent(eventID);
 
-            System.out.println("FFFF " + e.getEventName());
 
             if (u.completeEvent(e) > 0) {
-                System.out.println("e");
+                uDAO.updateUser(u);
                 return new ResponseEntity<>(u, HttpStatus.OK);
             }
             else {
-                System.out.println("f");
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         }

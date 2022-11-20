@@ -17,7 +17,9 @@ public class VolunteerUser extends User {
     @JsonProperty("eventsJoined")
     private ArrayList<Event> eventsJoined; 
 
-    public VolunteerUser(@JsonProperty("UID")String UID, @JsonProperty("username")String username, @JsonProperty("password")String password, 
+    public VolunteerUser(@JsonProperty("UID")String UID,
+                         @JsonProperty("username")String username, 
+                         @JsonProperty("password")String password, 
                         @JsonProperty("name") String name,
                         @JsonProperty("currentPoints") int currentPoints,
                         @JsonProperty("level") double level,
@@ -25,8 +27,8 @@ public class VolunteerUser extends User {
                         @JsonProperty("eventsJoined") ArrayList<Event> eventsJoined) {
         super(UID, username, password);
         this.name = name;
-        this.currentPoints = 0;
-        this.level = 0;
+        this.currentPoints = currentPoints;
+        this.level = level;
         this.claimedDiscounts = new ArrayList<>();
         this.eventsJoined = new ArrayList<>();
     }
@@ -44,7 +46,8 @@ public class VolunteerUser extends User {
     }
 
     public boolean addEvent(Event event) {
-        return eventsJoined.add(event);
+        eventsJoined.add(event);
+        return true;
     }
 
     //Returns -1 if not added
