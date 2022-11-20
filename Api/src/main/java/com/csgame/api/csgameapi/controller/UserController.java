@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
+import com.csgame.api.csgameapi.persistence.CompanyUserDAO;
+import com.csgame.api.csgameapi.persistence.NPOUserDAO;
 import com.csgame.api.csgameapi.persistence.UserDAO;
 import com.csgame.api.csgameapi.persistence.VolunteerUserDAO;
 import com.csgame.api.csgameapi.model.User;
@@ -32,35 +34,43 @@ import com.csgame.api.csgameapi.model.User;
 @RestController
 @RequestMapping("users")
 public class UserController {
-    private UserDAO userDao;
-    private VolunteerUserDAO volunteerDAO;
+    private VolunteerUserDAO vDAO;
+    private CompanyUserDAO cDAO;
+    private NPOUserDAO oDAO;
 
-    public UserController(UserDAO userDao, VolunteerUserDAO volunteerDAO) {
-        this.userDao = userDao;
-        this.volunteerDAO = volunteerDAO;
+    public UserController(VolunteerUserDAO volunteerDAO,
+                            CompanyUserDAO companyDAO,
+                            NPOUserDAO npoDAO) {
+        this.vDAO = volunteerDAO;
+        this.cDAO = companyDAO;
+        this.oDAO = npoDAO;
     }
 
     @GetMapping("/{UID}")
     public ResponseEntity<User> getUser(@PathVariable String UID) {
         
         try {
-            User user = userDao.getUser(UID);
+            // parse uid instead of guessing and checking
+            // depending on first letter, use if and go to right DAO
+            String userType = UID.substring(0, 0);
+            int idNumber = Integer.parseInt(UID.substring(1));
 
-            if (user != null)
-                return new ResponseEntity<User>(user, HttpStatus.OK);
-            else{
-                try {
-                    user = volunteerDAO.getUser(UID);
-        
-                    if (user != null)
-                        return new ResponseEntity<User>(user, HttpStatus.OK);
-                    else
-                        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-                }
-                catch(IOException e) {
-                    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-                }
+            User u;
+                    
+            if (userType.equals("v"))
+                u = vDAO.getUser(UID);
+
+            else (userType.equals("v"))
+                u = cDAO.getUser(UID);
+
+            else { // equals o
+                u = oDAO.getUser(UID);
             }
+
+            if (u != null)
+                return new ResponseEntity<User>(u, HttpStatus.OK);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         catch(IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
