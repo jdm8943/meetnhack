@@ -11,7 +11,6 @@ import { UserService } from './user.service';
 })
 export class AppComponent {
   public loggedInID: string | null = null;
-  public username!: string
 
   title = 'Community Service Game';
 
@@ -22,9 +21,6 @@ export class AppComponent {
   ngOnInit() {
     this.loggedIn();
     console.log((this.loggedInID || '').toString());
-    this.userService.getUser((this.loggedInID || '').toString()).subscribe(user => {
-      this.username = user.username
-    })
   }
 
   loggedIn(): void {
@@ -33,7 +29,6 @@ export class AppComponent {
 
   logout(): void {
     localStorage.removeItem('loginSessId');
-    this.username = ''
     this.loggedIn();
   }
 }

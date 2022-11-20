@@ -6,6 +6,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { DiscountsComponent } from './discounts/discounts.component';
 import { EventDetailComponent } from './eventdetail/eventdetail.component';
 import { AttendingComponent } from './attending/attending.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'events/:id', component: EventDetailComponent },
   { path: 'add-event', component: AddEventComponent, },
   { path: 'discounts', component: DiscountsComponent, },
-  { path: 'attending', component: AttendingComponent}
+  { path: 'attending', component: AttendingComponent },
+  { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({

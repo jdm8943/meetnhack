@@ -21,6 +21,7 @@ import { EventDetailComponent } from './eventdetail/eventdetail.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DiscountsComponent } from './discounts/discounts.component';
 import { AttendingComponent } from './attending/attending.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AttendingComponent } from './attending/attending.component';
     AddEventComponent,
     EventDetailComponent,
     DiscountsComponent,
-    AttendingComponent
+    AttendingComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
