@@ -13,6 +13,10 @@ export class UserService {
 
   private userUrl = 'http://localhost:8080/users';
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
   constructor(private http: HttpClient) { }
 
   /** GET hero by id. Will 404 if id not found */
@@ -21,6 +25,15 @@ export class UserService {
     return this.http.get<User>(url).pipe(
       tap(_ => console.log(`fetched hero id=${id}`)),
       catchError(this.handleError<User>(`getHero id=${id}`))
+    );
+  }
+  
+  login(user: User): Observable<User> {
+    const url = `${this.userUrl}/login`;
+    return this.http.post<User>(url, user, this.httpOptions)
+      .pipe(
+        tap((newUser: User) => console.log(`login user=${newUser.username}, pass=${newUser.password}`)),
+        catchError(this.handleError<User>('login'))
     );
   }
   

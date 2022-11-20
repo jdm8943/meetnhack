@@ -43,6 +43,21 @@ public class UserController {
         }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestBody User user){
+        try {
+            
+            // User checkUser = userDao.login(user.getUsername(), user.getPassword());
+            User checkUser = userDao.login("TestVolunteer", "password");
+            if(checkUser != null)
+                return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }catch(IOException e){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     // @PatchMapping("")
     // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
     //     try {

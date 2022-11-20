@@ -1,0 +1,15 @@
+<div id = "flex" class="flex md:align-se md:align-items-center flex-column lg:justify-content-between lg:flex-row">
+    <div>
+        <div id ="header" class="font-medium text-3xl text-900">Add Events</div>
+        <div class="flex align-items-center text-700 flex-wrap">
+            <input placeholder="name" #name/>
+            <input placeholder="description" #description/>
+            <input placeholder="points" #points/>
+            <input placeholder="date" #date />
+            <div class="mr-5 flex align-items-center mt-3">
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 lg:mt-0">
+        <button pButton pRipple label="Add Event" class="p-button-outlined mr-2" (click)="add(name.value, description.value, +points.value,date.value)"></button>
+    </div>
