@@ -89,31 +89,29 @@ public class UserController {
         }
     }
 
-    // @PostMapping("")
-    // public ResponseEntity<User> createUser(@RequestBody User user) {
-    //     try {
-    //         String userType = user.getUID().substring(0, 1);
+    @PostMapping("")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        try {
+            String userType = user.getUID().substring(0, 1);
 
-    //         VolunteerUser v = null;
-    //         CompanyUser c = null;
-    //         NPOUser n = null;
+            User createdUser;
 
-    //         if (userType.equals("V"))
-    //             v = (VolunteerUser) vDAO.getVUser(UID);
-    //         else if (userType.equals("C"))
-    //             c = cDAO.getUser(UID);
-    //         else // equals o
-    //             n = oDAO.getUser(UID);  
+            if (userType.equals("V"))
+                createdUser = vDAO.createUser((VolunteerUser) user);
+            else if (userType.equals("C"))
+                createdUser = cDAO.createUser((CompanyUser) user);
+            else // equals o
+                createdUser = oDAO.createUser((NPOUser) user);  
 
-    //         if(createdUser == null)
-    //             return new ResponseEntity<>(HttpStatus.CONFLICT);
-    //         else
-    //             return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
-    //     }
-    //     catch (IOException e) {
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
+            if(createdUser == null)
+                return new ResponseEntity<>(HttpStatus.CONFLICT);
+            else
+                return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
+        }
+        catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     // @PatchMapping("")
     // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
