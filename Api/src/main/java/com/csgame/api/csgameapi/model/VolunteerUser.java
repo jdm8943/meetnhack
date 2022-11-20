@@ -17,17 +17,12 @@ public class VolunteerUser extends User {
     @JsonProperty("eventsJoined")
     private ArrayList<Event> eventsJoined; 
 
-<<<<<<< HEAD
     public VolunteerUser(@JsonProperty("UID")String UID, @JsonProperty("username")String username, @JsonProperty("password")String password, 
                         @JsonProperty("name") String name,
                         @JsonProperty("currentPoints") int currentPoints,
                         @JsonProperty("level") double level,
                         @JsonProperty("claimedDiscounts") Discount[] claimedDiscounts,
                         @JsonProperty("eventsJoined") Event[] eventsJoined) {
-=======
-    public VolunteerUser(String UID, String username, String password, 
-                        @JsonProperty("name") String name) {
->>>>>>> 7d75da386a44f2703e15a41759ae5e422e04ee70
         super(UID, username, password);
         this.name = name;
         this.currentPoints = 0;
