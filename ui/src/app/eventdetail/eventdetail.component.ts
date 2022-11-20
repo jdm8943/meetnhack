@@ -16,6 +16,7 @@ export class EventDetailComponent implements OnInit {
   orgEvent: OrgEvent | undefined;
   eventID!: number;
   UID!: string;
+  joined!: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,7 +51,7 @@ export class EventDetailComponent implements OnInit {
   }
 
   complete(): void {
-    console.log("USER SERVIEC: ", this.userService.completeEvent(this.UID, this.eventID).subscribe());
+    console.log("USER SERVICE: ", this.userService.completeEvent(this.UID, this.eventID).subscribe());
   }
 
   save(): void {

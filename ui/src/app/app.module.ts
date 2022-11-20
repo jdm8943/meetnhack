@@ -22,6 +22,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DiscountsComponent } from './discounts/discounts.component';
 import { AttendingComponent } from './attending/attending.component';
 import { DiscountDetailsComponent } from './discount-details/discount-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DiscountDetailsComponent } from './discount-details/discount-details.co
     EventDetailComponent,
     DiscountsComponent,
     AttendingComponent,
-    DiscountDetailsComponent
+    DiscountDetailsComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

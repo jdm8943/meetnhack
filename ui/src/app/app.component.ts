@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,13 @@ export class AppComponent {
 
   title = 'Community Service Game';
 
+  constructor(
+    private userService: UserService
+  ) { }
+
   ngOnInit() {
     this.loggedIn();
+    console.log((this.loggedInID || '').toString());
   }
 
   loggedIn(): void {

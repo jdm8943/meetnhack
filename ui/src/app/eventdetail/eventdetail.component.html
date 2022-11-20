@@ -1,6 +1,7 @@
 <body>
     <div *ngIf="orgEvent">
         <h2>{{orgEvent.eventName | uppercase}} Details</h2>
+        <label *ngIf="joined"><em>Already Joined!</em></label>
         <div>
             <p>{{orgEvent.description}}</p>
             <p>{{orgEvent.points}}</p>
