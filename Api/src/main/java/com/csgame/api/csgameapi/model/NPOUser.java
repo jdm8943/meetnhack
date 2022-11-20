@@ -44,4 +44,8 @@ public class NPOUser extends User {
         this.orgName = orgName;
     }
 
+    public Event createEvent(int eventID, int orgID, String eventName, String description, int points, String date){
+        Event e = new Event(eventID, date, eventName, description, points, null, date);
+        return e;
+    }
 }
