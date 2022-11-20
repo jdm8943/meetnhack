@@ -1,11 +1,13 @@
 <p-menubar styleClass="test">
-    <a routerLink="/events" *ngIf="loggedInID"><button pButton type="button" label="Events"
-            *ngIf="loggedInID[0]=='V'"></button></a>
-    <a routerLink="/add-event" *ngIf="loggedInID"><button pButton type="button" label="AEvents"
-            *ngIf="loggedInID[0]=='O'"></button></a>
-    <a routerLink="/login"><button pButton type="button" label="Login"></button></a>
-    <a *ngIf="loggedInID" routerLink="/profile"><button pButton type="button" label="Profile"></button></a>
+        <a routerLink="/events" *ngIf="loggedInID"><button pButton type="button" label="Events"
+                        *ngIf="loggedInID[0]=='V'"></button></a>
+        <a routerLink="/add-event" *ngIf="loggedInID"><button pButton type="button" label="AEvents"
+                        *ngIf="loggedInID[0]=='O'"></button></a>
+        <a routerLink="/login"><button pButton type="button" label="Login"></button></a>
+        <a *ngIf="loggedInID" routerLink="/profile"><button pButton type="button" label="Profile"></button></a>
 </p-menubar>
 <h1></h1>
 
-<router-outlet></router-outlet>
+<main>
+        <router-outlet></router-outlet>
+</main>

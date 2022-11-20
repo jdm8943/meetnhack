@@ -14,6 +14,8 @@ import { MenuItem } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ToolbarModule } from 'primeng/toolbar';
+import { CardModule } from 'primeng/card';
+
 
 import { AddEventComponent } from './add-event/add-event.component';
 import { RippleModule } from 'primeng/ripple';
@@ -44,7 +46,8 @@ import { ProfileComponent } from './profile/profile.component';
     CheckboxModule,
     ToolbarModule,
     RippleModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

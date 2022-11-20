@@ -1,6 +1,11 @@
-#asdf{
-    right:10%
+#asdf {
+    right: 10%
 }
+
 a {
     text-decoration: none !important;
-  }
+}
+
+main {
+    margin: 0 5%
+}
