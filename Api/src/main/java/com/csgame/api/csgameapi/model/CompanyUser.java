@@ -1,16 +1,18 @@
 package com.csgame.api.csgameapi.model;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CompanyUser extends User {
-    static final String STRING_FORMAT = "CompanyUser [UID=%s, username=%s, password=%s, compnayName=%s]";
+    static final String STRING_FORMAT = "CompanyUser [UID=%s, username=%s, password=%s, companyName=%s]";
 
     @JsonProperty("companyName")
     private String companyName;
+    private ArrayList<Discount> companyDiscounts;
 
     /**
-     * Create a NPO User with the given id and name
+     * Create a company User with the given id and name
      * 
      * @param UID      The id of the user
      * @param username The name of the user
@@ -29,6 +31,7 @@ public class CompanyUser extends User {
             @JsonProperty("companyName") String companyName) {
         super(UID, username, password);
         this.companyName = companyName;
+        companyDiscounts = new ArrayList<>();
     }
 
     public String getCompanyName() {
@@ -39,4 +42,13 @@ public class CompanyUser extends User {
         this.companyName = companyName;
     }
 
+    public Discount addDiscount(int id, String name, int levelRequired, int pointsRequired) {
+        Discount discount = new Discount(id, name, levelRequired, pointsRequired, Integer.parseInt(this.getUID().substring(1)));
+        companyDiscounts.add(discount);
+        return discount;
+    }
+
+    public ArrayList<Discount> getCompanyDiscounts(){
+        return companyDiscounts;
+    }
 }

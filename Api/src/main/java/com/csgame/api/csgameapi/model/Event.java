@@ -12,7 +12,7 @@ public class Event {
     @JsonProperty("eventID")
     private int eventID;
     @JsonProperty("orgID")
-    private String orgID;
+    private int orgID;
     @JsonProperty("eventName")
     private String eventName;
     @JsonProperty("description")
@@ -25,18 +25,16 @@ public class Event {
     private String date;
 
     public Event(@JsonProperty("eventID") int eventID,
-            @JsonProperty("orgID") String orgID,
+            @JsonProperty("orgID") int orgID,
             @JsonProperty("eventName") String eventName,
             @JsonProperty("description") String description,
             @JsonProperty("points") int points,
-            @JsonProperty("attendees") User[] attendees,
             @JsonProperty("date") String date) {
         this.eventID = eventID;
         this.orgID = orgID;
         this.eventName = eventName;
         this.description = description;
         this.points = points;
-        this.attendees = attendees;
         this.date = date;
     }
 
@@ -44,11 +42,11 @@ public class Event {
         return this.eventID;
     }
 
-    public String getOrgID() {
+    public int getOrgID() {
         return this.orgID;
     }
 
-    public void setOrgID(String orgID) {
+    public void setOrgID(int orgID) {
         this.orgID = orgID;
     }
 

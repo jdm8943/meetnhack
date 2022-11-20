@@ -32,7 +32,6 @@ import com.csgame.api.csgameapi.model.Event;
 @RestController
 @RequestMapping("events")
 public class EventController {
-    private static final Logger LOG = Logger.getLogger(EventController.class.getName());
     private EventDAO EventDao;
 
     /**
@@ -60,15 +59,14 @@ public class EventController {
      */
     @GetMapping("/{eventID}")
     public ResponseEntity<Event> getEvent(@PathVariable int eventID) {
-        LOG.info("GET /events/" + eventID);
         try {
             Event event = EventDao.getEvent(eventID);
             if (event != null)
                 return new ResponseEntity<Event>(event, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        } 
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -83,13 +81,11 @@ public class EventController {
      */
     @GetMapping("")
     public ResponseEntity<Event[]> getEvents() {
-        LOG.info("GET /events");
-
         try {
             Event[] events = EventDao.getEvents();
             return new ResponseEntity<Event[]>(events, HttpStatus.OK);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        } 
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -109,47 +105,14 @@ public class EventController {
      *         <p>
      *         Example: Find all events that contain the text "ma"
      *         GET http://localhost:8080/events/?eventName=ma OR
-     *         GET http://localhost:8080/events/?orgID=O45
      */
     @GetMapping("/")
     public ResponseEntity<Event[]> searchEvents(@RequestParam String eventName) {
-        LOG.info("GET /events/?name=" + eventName);
-
         try {
             Event[] events = EventDao.findEvents(eventName);
             return new ResponseEntity<Event[]>(events, HttpStatus.OK);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    /**
-     * Responds to the GET request for all {@linkplain Event events} whose name
-     * contains the text in or whose orgID matches the search term
-     * 
-     * @param searchTerm The search parameter which contains the text used to find
-     *                   the
-     *                   {@link Event events} by name or organization
-     * 
-     * @return ResponseEntity with array of {@link Event event} objects (may be
-     *         empty) and
-     *         HTTP status of OK<br>
-     *         ResponseEntity with HTTP status of INTERNAL_SERVER_ERROR otherwise
-     *         <p>
-     *         Example: Find all events that contain the text "ma"
-     *         GET http://localhost:8080/events/?eventName=ma OR
-     *         GET http://localhost:8080/events/?orgID=O45
-     */
-    @GetMapping("/org/")
-    public ResponseEntity<Event[]> searchEventsOrg(@RequestParam String orgID) {
-        LOG.info("GET /events/org/?orgID=" + orgID);
-
-        try {
-            Event[] events = EventDao.findEvents(orgID);
-            return new ResponseEntity<Event[]>(events, HttpStatus.OK);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        } 
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -167,19 +130,20 @@ public class EventController {
      */
     @PostMapping("")
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        LOG.info("POST /events " + event);
         String name = event.getEventName();
         ResponseEntity<Event[]> response = searchEvents(name);
+        
         try {
             if (response.getBody() == null || (response.getBody() != null && response.getBody().length < 1)) {
                 return new ResponseEntity<Event>(EventDao.createEvent(event), HttpStatus.CREATED);
-            } else
+            } 
+            else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        } 
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (NullPointerException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        } 
+        catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -197,19 +161,17 @@ public class EventController {
      */
     @PutMapping("")
     public ResponseEntity<Event> updateEvent(@RequestBody Event event) {
-        LOG.info("PUT /events " + event);
-
         try {
             Event newEvent = EventDao.updateEvent(event);
             if (newEvent != null)
                 return new ResponseEntity<Event>(newEvent, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        }
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
+    } // TEST LATER
 
     /**
      * Deletes a {@linkplain Event event} with the given id
@@ -222,15 +184,13 @@ public class EventController {
      */
     @DeleteMapping("/{eventID}")
     public ResponseEntity<Event> deleteEvent(@PathVariable int eventID) {
-        LOG.info("DELETE /events/" + eventID);
-
         try {
             if (EventDao.deleteEvent(eventID) != false)
                 return new ResponseEntity<>(HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
+        } 
+        catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

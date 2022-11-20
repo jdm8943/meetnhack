@@ -1,6 +1,7 @@
 package com.csgame.api.csgameapi.model;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -11,9 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class NPOUser extends User {
     // Package private for tests
     static final String STRING_FORMAT = "NPOUser [UID=%s, username=%s, password=%s, orgName=%s]";
-
+    
     @JsonProperty("orgName")
     private String orgName;
+    private ArrayList<Event> NPOevents;
 
     /**
      * Create a NPO User with the given id and name
@@ -34,7 +36,8 @@ public class NPOUser extends User {
             @JsonProperty("password") String password,
             @JsonProperty("orgName") String orgName) {
         super(UID, username, password);
-        this.orgName = UID;
+        this.orgName = orgName;
+        NPOevents = new ArrayList<>();
     }
 
     public String getOrgName() {
@@ -45,4 +48,24 @@ public class NPOUser extends User {
         this.orgName = orgName;
     }
 
+    public Event createEvent(int eventID, int orgID, String eventName, String description, int points, String date){
+        Event e = new Event(eventID, orgID, eventName, description, points, date);
+        NPOevents.add(e);
+        return e;
+    }
+
+    public boolean deleteEvent(int eventID){
+        boolean deleted = false;
+        for (Event e : NPOevents){
+            if (e.getEventID() == eventID){
+                NPOevents.remove(e);
+                deleted = true;
+            }
+        }
+        return deleted;
+    }
+
+    public ArrayList<Event> getAllEvents(){
+        return NPOevents;
+    }
 }
