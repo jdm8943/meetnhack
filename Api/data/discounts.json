@@ -1,1 +1,23 @@
-[{"id":1,"name":"10% Walmart","levelRequired":2,"pointsRequired":200,"companyId":0}]
+[
+    {
+        "id": 1,
+        "name": "10% Walmart",
+        "levelRequired": 2,
+        "pointsRequired": 200,
+        "companyId": 0
+    },
+    {
+        "id": 4,
+        "name": "15% Walmart",
+        "levelRequired": 3,
+        "pointsRequired": 300,
+        "companyId": 0
+    },
+    {
+        "id": 3,
+        "name": "5% Target",
+        "levelRequired": 1,
+        "pointsRequired": 100,
+        "companyId": 2
+    }
+]
