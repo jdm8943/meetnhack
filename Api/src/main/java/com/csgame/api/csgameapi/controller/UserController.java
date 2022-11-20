@@ -48,7 +48,7 @@ public class UserController {
         try {
             
             // User checkUser = userDao.login(user.getUsername(), user.getPassword());
-            User checkUser = userDao.login("TestVolunteer", "password");
+            User checkUser = userDao.login(user.getUsername(), user.getPassword());
             if(checkUser != null)
                 return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
             else
