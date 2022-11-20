@@ -50,4 +50,13 @@ export class UserService {
       return of(result as T);
     };
   }
+
+  addEvent(UID: String, eventID: String){
+    const url = `${this.userUrl}/${UID}/${eventID}`;
+    return this.http.post<User>(url, this.httpOptions)
+      .pipe(
+        tap((newUser: User) => console.log(`login user=${newUser.username}, pass=${newUser.password}`)),
+        catchError(this.handleError<User>('login'))
+    );
+  }
 }

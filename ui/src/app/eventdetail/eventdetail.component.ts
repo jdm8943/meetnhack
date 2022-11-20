@@ -41,6 +41,15 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
 
+  join(): void{
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    
+  }
+
+  complete(): void{
+
+  }
+
   save(): void {
     if (this.orgEvent) {
       this.eventService.updateEvent(this.orgEvent)
