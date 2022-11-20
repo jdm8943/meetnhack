@@ -75,7 +75,7 @@ public class UserFileDAO implements UserDAO {
 
     public User login(String username, String password) {
         for (User u : users.values()) {
-            if (u.getUsername() == username && u.getPassword() == password)
+            if (u.getUsername().equals(username) && u.getPassword().equals(password))
                 return u;
         }
 

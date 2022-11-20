@@ -20,7 +20,6 @@ import com.csgame.api.csgameapi.persistence.DiscountDAO;
 @RestController
 @RequestMapping("discounts")
 public class DiscountController {
-    private static final Logger LOG = Logger.getLogger(UserController.class.getName());
     private DiscountDAO discountDAO;
 
     public DiscountController(DiscountDAO discountDAO) {
@@ -29,7 +28,6 @@ public class DiscountController {
 
     @PostMapping("")
     public ResponseEntity<Discount> createDiscount(@RequestBody Discount discount) {
-        LOG.info("POST /discounts " + discount);
         try {
             Discount response = discountDAO.getDiscount(discount.getId());
             if (response == null) {
@@ -37,14 +35,12 @@ public class DiscountController {
             } else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Discount> getDiscount(@PathVariable int id) {
-        LOG.info("GET /discounts/" + id);
         try {
             Discount discount = discountDAO.getDiscount(id);
             if (discount != null)
@@ -52,27 +48,22 @@ public class DiscountController {
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("")
     public ResponseEntity<Discount[]> getDiscounts() {
-        LOG.info("GET /discounts");
         try {
             Discount[] discounts = discountDAO.getDiscounts();
             return new ResponseEntity<Discount[]>(discounts, HttpStatus.OK);
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("")
     public ResponseEntity<Discount> updateDiscount(@RequestBody Discount discount) {
-        LOG.info("PUT /discounts " + discount);
-
         try {
             Discount newDiscount = discountDAO.updateDiscount(discount);
             if (newDiscount != null) {
@@ -81,9 +72,7 @@ public class DiscountController {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
         } catch (IOException e) {
-            LOG.log(Level.SEVERE, e.getLocalizedMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 }

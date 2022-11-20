@@ -1,7 +1,7 @@
 [
     {
         "eventID": 11,
-        "orgID": "O13",
+        "orgID": 13,
         "eventName": "Forest Clean Up",
         "description": "Clean our local state forest!",
         "points": 200,
@@ -10,7 +10,7 @@
     },
     {
         "eventID": 13,
-        "orgID": "O12",
+        "orgID": 12,
         "eventName": "Thanksgiving Food Drive",
         "description": "Take food donations from donors.",
         "points": 100,
@@ -19,7 +19,7 @@
     },
     {
         "eventID": 14,
-        "orgID": "O13",
+        "orgID": 12,
         "eventName": "Tree Planting",
         "description": "Plant trees with Arbor Club",
         "points": 100,

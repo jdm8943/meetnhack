@@ -35,13 +35,16 @@ import com.csgame.api.csgameapi.model.User;
 @RestController
 @RequestMapping("users")
 public class UserController {
+    private UserDAO uDAO;
     private VolunteerUserDAO vDAO;
     private CompanyUserDAO cDAO;
     private NPOUserDAO oDAO;
 
-    public UserController(VolunteerUserDAO volunteerDAO,
+    public UserController(UserDAO userDAO,
+                            VolunteerUserDAO volunteerDAO,
                             CompanyUserDAO companyDAO,
                             NPOUserDAO npoDAO) {
+        this.uDAO = userDAO;
         this.vDAO = volunteerDAO;
         this.cDAO = companyDAO;
         this.oDAO = npoDAO;
@@ -74,49 +77,42 @@ public class UserController {
         }
     }
 
-    @PatchMapping("")
-    public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
-        try {
-            String UID = requestBody.get("UID").toString(); // EX: UID = "V0" w/ quotes
+    // @PatchMapping("")
+    // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
+    //     try {
+    //         String UID = requestBody.get("UID").toString(); // EX: UID = "V0" w/ quotes
 
-            String userType = UID.substring(1, 2);
-            User userToUpdate;
+    //         String userType = UID.substring(1, 2);
+    //         User userToUpdate;
 
-            if (userType.equals("V")) {
-                userToUpdate = vDAO.getUser(UID);
+    //         if (userType.equals("V")) {
+    //             userToUpdate = vDAO.getUser(UID);
                 
-                if (requestBody.get("currentPoints") != null){
-                    String points = requestBody.get("currentPoints").toString();
-                    int pointsInt = Integer.parseInt(points.substring(1, points.length() - 1));
-                    userToUpdate.setCurrentPoints(pointsInt);
-                }
-            }
+    //             if (requestBody.get("currentPoints") != null){
+    //                 String points = requestBody.get("currentPoints").toString();
+    //                 int pointsInt = Integer.parseInt(points.substring(1, points.length() - 1));
+    //                 userToUpdate.set
+    //             }
+    //         }
+    //         else
+    //             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     }
+    //     catch (IOException e)
+    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    // }
+    
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestBody User user) {
+        try {
+            User checkUser = uDAO.login(user.getUsername(), user.getPassword());
+            
+            if(checkUser != null)
+                return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        catch (IOException e)
+        catch(IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
-    
-    // @PostMapping("/login")
-    // public ResponseEntity<User> loginUser(@RequestBody User user){
-    //     try {
-            
-    //         User checkUser = userDAO.checkUserLogin(user.getUsername(), user.getPassword());
-    //         if(checkUser != null)
-    //             return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
-    //         else
-    //             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    //     }catch(IOException e){
-    //         LOG.log(Level.SEVERE,e.getLocalizedMessage());
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
-
-    /**
-     * get user
-     * update user
-     * login
-     * 
-     */
 }
