@@ -1,1 +1,10 @@
-<h2>{{username}}</h2>
+<div class="center">
+    <label class="control-label" for="username">Username: </label>
+    <input type="login-input" placeholder="username" id="username" #username/>
+    <br>
+    <label class="control-label" for="password">Password: </label>
+    <input type="login-input" placeholder="password" id="password" #password/>
+    <br>
+    <button class="button" id = "loginButton" (click)="login(username.value, password.value)">Login</button>
+    <!-- <button pButton pRipple type="button" label="Login" (click)="login(username.value, password.value)"></button> -->
+</div>
