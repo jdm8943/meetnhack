@@ -40,7 +40,7 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
         return array;
     }
 
-    public VolunteerUser getUser(String UID) {
+    public VolunteerUser getUser(String UID) throws IOException {
         synchronized (users) {
             for (VolunteerUser u : users.values())
                 if (u.getUID().equals(UID))
@@ -49,6 +49,21 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
             return null;
         }
     }
+
+
+    public VolunteerUser getVUser(String UID) throws IOException {
+        synchronized (users) {
+            VolunteerUser gotUser = users.get(UID);
+            // System.out.println(gotUser.getName());
+            // System.out.println(gotUser.getCurrentPoints());
+            // System.out.println(gotUser.getLevel());
+            // System.out.println(gotUser.getClaimedDiscounts());
+            // System.out.println(gotUser.getEventsJoined());
+            return gotUser;
+        }
+    }
+
+
 
     public VolunteerUser[] getUsers() {
         synchronized (users) {
@@ -69,9 +84,18 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
 
         VolunteerUser[] userArray = objectMapper.readValue(new File(filename), VolunteerUser[].class);
 
-        for (VolunteerUser user : userArray)
-            if (user.getUID().substring(0, 1).equals("V"))
-                users.put(user.getUsername(), user);
+        for (VolunteerUser user : userArray) {
+            System.out.println(user.getUID().substring(0, 1).equals("V"));
+            if (user.getUID().substring(0, 1).equals("V")){
+                users.put(user.getUID(), user);
+                System.out.println(user.getUID());
+                System.out.println(user.getName());
+                System.out.println(user.getCurrentPoints());
+                System.out.println(user.getLevel());
+                System.out.println(user.getClaimedDiscounts());
+                System.out.println(user.getEventsJoined());
+            }
+        }
 
         return true;
     }
@@ -87,10 +111,17 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
             VolunteerUser user = new VolunteerUser("V" + nextID(), u.getUsername(), u.getPassword(),
                                         u.getName(), u.getCurrentPoints(), u.getLevel(),
                                         u.getClaimedDiscounts(), u.getEventsJoined());
-            users.put(user.getUsername(), user);
-            //save();
+            users.put(user.getUID(), user);
+            save();
             return user;
         }
+    }
+
+    private boolean save() throws IOException {
+        VolunteerUser[] userArray = getUsersArray();
+
+        objectMapper.writeValue(new File(filename), userArray);
+        return true;
     }
 
     public VolunteerUser login(String username, String password) {
@@ -102,7 +133,14 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
         return null;
     }
 
-    public VolunteerUser updateUser(VolunteerUser user) {
-        return user;
+    public VolunteerUser updateUser(VolunteerUser user) throws IOException {
+        synchronized(users) {
+            if (users.containsKey(user.getUID()) == false)
+                return null;  // user does not exist
+
+            users.put(user.getUID(),user);
+            save(); // may throw an IOException
+            return user;
+        }
     }
 }

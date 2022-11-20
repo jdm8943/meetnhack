@@ -1,5 +1,14 @@
 [
     {
+        "eventID": 4,
+        "orgID": 5,
+        "eventName": "Steal Puppies",
+        "description": "Steal dogs from shelters!",
+        "points": 1200,
+        "attendees": [],
+        "date": "11-19-2022"
+    },
+    {
         "eventID": 11,
         "orgID": 13,
         "eventName": "Forest Clean Up",
