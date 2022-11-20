@@ -1,5 +1,7 @@
 package com.csgame.api.csgameapi.model;
 
+import java.time.LocalDateTime;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -17,15 +19,25 @@ public class Event {
     private String description;
     @JsonProperty("points")
     private int points;
+    @JsonProperty("attendees")
+    private User[] attendees;
+    @JsonProperty("date")
+    private String date;
 
-    public Event(@JsonProperty("eventID") int eventID, @JsonProperty("orgID") String orgID,
-            @JsonProperty("eventName") String eventName, @JsonProperty("description") String description,
-            @JsonProperty("points") int points) {
+    public Event(@JsonProperty("eventID") int eventID,
+            @JsonProperty("orgID") String orgID,
+            @JsonProperty("eventName") String eventName,
+            @JsonProperty("description") String description,
+            @JsonProperty("points") int points,
+            @JsonProperty("attendees") User[] attendees,
+            @JsonProperty("date") String date) {
         this.eventID = eventID;
         this.orgID = orgID;
         this.eventName = eventName;
         this.description = description;
         this.points = points;
+        this.attendees = attendees;
+        this.date = date;
     }
 
     public int getEventID() {
@@ -62,6 +74,18 @@ public class Event {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public User[] getAttendees() {
+        return this.attendees;
+    }
+
+    public void setAttendees(User[] attendees) {
+        this.attendees = attendees;
+    }
+
+    public String getDate() {
+        return this.date;
     }
 
 }
