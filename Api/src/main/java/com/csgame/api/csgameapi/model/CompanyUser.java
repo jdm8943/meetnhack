@@ -1,5 +1,7 @@
 package com.csgame.api.csgameapi.model;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class CompanyUser extends User {
@@ -7,6 +9,7 @@ public class CompanyUser extends User {
 
     @JsonProperty("companyName")
     private String companyName;
+    private ArrayList<Discount> companyDiscounts;
 
     /**
      * Create a company User with the given id and name
@@ -28,6 +31,7 @@ public class CompanyUser extends User {
             @JsonProperty("companyName") String companyName) {
         super(UID, username, password);
         this.companyName = companyName;
+        companyDiscounts = new ArrayList<>();
     }
 
     public String getCompanyName() {
@@ -38,4 +42,9 @@ public class CompanyUser extends User {
         this.companyName = companyName;
     }
 
+    public Discount addDiscount(int id, String name, int levelRequired, int pointsRequired) {
+        Discount discount = new Discount(id, name, levelRequired, pointsRequired, Integer.parseInt(this.getUID().substring(1)));
+        companyDiscounts.add(discount);
+        return discount;
+    }
 }

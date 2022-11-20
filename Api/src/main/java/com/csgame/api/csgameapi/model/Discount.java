@@ -16,14 +16,14 @@ public class Discount {
     @JsonProperty("pointsRequired")
     private int pointsRequired;
     @JsonProperty("companyId")
-    private String companyId;
+    private int companyId;
 
     @JsonCreator
     public Discount(@JsonProperty("id") int id,
             @JsonProperty("name") String name,
             @JsonProperty("levelRequired") int levelRequired,
             @JsonProperty("pointsRequired") int pointsRequired,
-            @JsonProperty("companyId") String companyId) {
+            @JsonProperty("companyId") int companyId) {
         this.id = id;
         this.name = name;
         this.levelRequired = levelRequired;
@@ -47,7 +47,7 @@ public class Discount {
         return this.pointsRequired;
     }
 
-    public String getCompanyId() {
+    public int getCompanyId() {
         return this.companyId;
     }
 }
