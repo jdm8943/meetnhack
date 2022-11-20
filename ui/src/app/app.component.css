@@ -9,3 +9,13 @@ a {
 main {
     margin: 0 5%
 }
+
+#accordion {
+    z-index: 1;
+    position: absolute;
+    top: 15%;
+    right: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+}

@@ -1,4 +1,6 @@
-<p-menubar styleClass="test">
+<p-menubar id="menu" styleClass="test">
+        <h1>Points for People</h1>
+
         <a routerLink="/events" *ngIf="loggedInID"><button pButton type="button" label="Events"
                         *ngIf="loggedInID[0]=='V'"></button></a>
         <a routerLink="/add-event" *ngIf="loggedInID"><button pButton type="button" label="OrgEvents"
@@ -6,10 +8,14 @@
         <a routerLink="/discounts" *ngIf="loggedInID"><button pButton type="button" label="Discounts"
                         *ngIf="loggedInID[0]=='V'"></button></a>
         <a routerLink="/login"><button pButton type="button" label="Login"></button></a>
-        <a *ngIf="loggedInID" routerLink="/profile"><button pButton type="button" label="Profile"></button></a>
-</p-menubar>
-<h1></h1>
 
+
+</p-menubar>
 <main>
         <router-outlet></router-outlet>
+        <p-accordion id="accordion">
+                <p-accordionTab id="profilebutton" header="Profile" [selected]="false">
+                        <app-profile></app-profile>
+                </p-accordionTab>
+        </p-accordion>
 </main>
