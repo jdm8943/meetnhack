@@ -23,6 +23,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "node_modules/primeicons/primeicons.css",
               "primeng/resources/themes/lara-light-teal/theme.css",
               "node_modules/primeng/resources/primeng.min.css",

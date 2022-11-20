@@ -17,13 +17,16 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 import { AddEventComponent } from './add-event/add-event.component';
 import {RippleModule} from 'primeng/ripple';
+import { EventdetailComponent } from './eventdetail/eventdetail.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     EventsComponent,
-    AddEventComponent
+    AddEventComponent,
+    EventdetailComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {RippleModule} from 'primeng/ripple';
     InputTextModule,
     CheckboxModule,
     ToolbarModule,
-    RippleModule
+    RippleModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
