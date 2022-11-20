@@ -7,17 +7,17 @@ import { EventsComponent } from './events/events.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
-import {ButtonModule} from 'primeng/button';
+import { ButtonModule } from 'primeng/button';
 
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
-import {InputTextModule} from 'primeng/inputtext';
-import {CheckboxModule} from 'primeng/checkbox';
+import { MenubarModule } from 'primeng/menubar';
+import { MenuItem } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
 import { ToolbarModule } from 'primeng/toolbar';
 
 import { AddEventComponent } from './add-event/add-event.component';
-import {RippleModule} from 'primeng/ripple';
-import { EventdetailComponent } from './eventdetail/eventdetail.component';
+import { RippleModule } from 'primeng/ripple';
+import { EventDetailComponent } from './eventdetail/eventdetail.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     EventsComponent,
     AddEventComponent,
-    EventdetailComponent
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +43,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {  
+export class AppModule {
 
   ngOnInit() {
   }

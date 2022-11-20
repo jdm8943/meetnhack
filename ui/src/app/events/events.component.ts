@@ -11,6 +11,7 @@ import { EventService } from '../events.service';
 })
 export class EventsComponent implements OnInit {
   orgEvents: OrgEvent[] = [];
+  showingDetail = false;
 
   constructor(private eventService: EventService, public app: AppComponent) { }
 
@@ -20,6 +21,11 @@ export class EventsComponent implements OnInit {
 
   getEvents(): void {
     this.eventService.getEvents()
-      .subscribe(orgEvents => {this.orgEvents = orgEvents; console.log(orgEvents)});
+      .subscribe(orgEvents => { this.orgEvents = orgEvents; console.log(orgEvents) });
+  }
+
+  showDetail(): void {
+    this.showingDetail = !this.showingDetail;
+    console.log(this.showingDetail);
   }
 }

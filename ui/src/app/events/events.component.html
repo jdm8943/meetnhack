@@ -3,7 +3,8 @@
 <div>
     <ul>
         <li *ngFor="let orgEvent of orgEvents">
-            <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
+            <a routerLink="eventdetail/{{orgEvent.eventID}}">
+                <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button></a>
         </li>
     </ul>
 </div>
