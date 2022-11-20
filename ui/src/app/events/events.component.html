@@ -1,9 +1,9 @@
-<p>events works!</p>
+<h3>Events:</h3>
 
 <div>
-    <ul>
-        <li *ngFor="let orgEvent of orgEvents">
+    <div *ngFor="let orgEvent of orgEvents">
+        <div *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O' && orgEvent.orgID === 'O13'))">
             <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
-        </li>
-    </ul>
+        </div>
+    </div>
 </div>

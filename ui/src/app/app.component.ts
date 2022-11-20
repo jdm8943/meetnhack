@@ -9,7 +9,7 @@ import {MenuItem} from 'primeng/api';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  loggedInID: string | null = null;
+  public loggedInID: string | null = null;
 
   title = 'Community Service Game';
 
