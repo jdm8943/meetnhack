@@ -20,16 +20,16 @@ export class AddEventComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     public app: AppComponent
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
     // this.app.loggedIn();
   }
 
-  add(name: string, description: string, points: number, date: string): void{
-    // if (!name || !description || !points || !date) {return;}
-    // this.eventService.addEvent({name, description, points, date} as OrgEvent)
+  add(orgID: string, eventName: string, description: string, points: number, date: string): void {
+    if (!orgID || !eventName || !description || !points || !date) { return; }
+    this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
     return;
   }
 

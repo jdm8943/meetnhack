@@ -4,4 +4,5 @@ export interface OrgEvent {
     eventName: string;
     description: string;
     points: number;
+    date: string;
 }
