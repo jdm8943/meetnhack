@@ -19,6 +19,13 @@ export class DiscountsService {
     );
   }
 
+  getDiscount(id : Number): Observable<Discount>{
+    return this.http.get<Discount>(`${this.discountUrl}/${id}`)
+    .pipe(
+      catchError(this.handleError<Discount>('getDiscounts'))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
