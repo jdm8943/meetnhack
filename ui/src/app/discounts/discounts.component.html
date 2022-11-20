@@ -1,7 +1,7 @@
 <div>
     <label> Discounts </label>
     <div *ngFor="let discount of discounts">
-        <a routerLink="/discounts/{{discount}}">
+        <a routerLink="/discounts/{{discount.id}}">
             <button pButton type="button" label="{{discount.name}} : {{discount.pointsRequired}} points" class="p-button-outlined"></button>
         </a>
     </div>
