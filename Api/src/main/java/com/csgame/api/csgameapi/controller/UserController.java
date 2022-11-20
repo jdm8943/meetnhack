@@ -52,8 +52,7 @@ public class UserController {
         try {
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
-            String userType = UID.substring(0, 0);
-            
+            String userType = UID.substring(0, 1);
             User u;
 
             if (userType.equals("V"))

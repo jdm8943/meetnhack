@@ -68,7 +68,7 @@ public class CompanyUserFileDAO implements CompanyUserDAO {
         CompanyUser[] userArray = objectMapper.readValue(new File(filename), CompanyUser[].class);
 
         for (CompanyUser user : userArray)
-            if (user.getUID().substring(0, 0).equals("C"))
+            if (user.getUID().substring(0, 1).equals("C"))
                 users.put(user.getUsername(), user);
 
         return true;

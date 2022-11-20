@@ -68,7 +68,7 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
         VolunteerUser[] userArray = objectMapper.readValue(new File(filename), VolunteerUser[].class);
 
         for (VolunteerUser user : userArray)
-            if (user.getUID().substring(0, 0).equals("V"))
+            if (user.getUID().substring(0, 1).equals("V"))
                 users.put(user.getUsername(), user);
 
         return true;
