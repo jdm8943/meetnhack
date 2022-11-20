@@ -1,6 +1,5 @@
 package com.csgame.api.csgameapi.model;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
