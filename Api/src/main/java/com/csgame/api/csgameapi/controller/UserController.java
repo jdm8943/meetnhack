@@ -19,6 +19,7 @@ import com.csgame.api.csgameapi.persistence.CompanyUserDAO;
 import com.csgame.api.csgameapi.persistence.NPOUserDAO;
 import com.csgame.api.csgameapi.persistence.UserDAO;
 import com.csgame.api.csgameapi.persistence.VolunteerUserDAO;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.csgame.api.csgameapi.model.User;
 
 /**
@@ -57,10 +58,8 @@ public class UserController {
 
             if (userType.equals("V"))
                 u = vDAO.getUser(UID);
-
             else if (userType.equals("C"))
                 u = cDAO.getUser(UID);
-
             else { // equals o
                 u = oDAO.getUser(UID);  
             }
@@ -75,21 +74,29 @@ public class UserController {
         }
     }
 
-    // @PatchMapping("")
-    // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
-    //     try {
-    //         String UID = requestBody.get("UID").toString();
-    //         System.out.println(UID);
+    @PatchMapping("")
+    public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
+        try {
+            String UID = requestBody.get("UID").toString(); // EX: UID = "V0" w/ quotes
 
-    //         User userToUpdate = userDao.getUser(UID);
-            
-    //         if (userToUpdate != null) {
-    //             if (userToUpdate.getPassword().equals )
-    //         }
-    //     }
-    //     catch (IOException e)
-    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    // }
+            String userType = UID.substring(1, 2);
+            User userToUpdate;
+
+            if (userType.equals("V")) {
+                userToUpdate = vDAO.getUser(UID);
+                
+                if (requestBody.get("currentPoints") != null){
+                    String points = requestBody.get("currentPoints").toString();
+                    int pointsInt = Integer.parseInt(points.substring(1, points.length() - 1));
+                    userToUpdate.setCurrentPoints(pointsInt);
+                }
+            }
+            else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch (IOException e)
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     
     // @PostMapping("/login")
     // public ResponseEntity<User> loginUser(@RequestBody User user){

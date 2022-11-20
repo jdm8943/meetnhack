@@ -8,5 +8,17 @@
         "level": 100,
         "claimedDiscounts": null,
         "eventsJoined": null
+    },
+    {
+        "UID": "C1",
+        "username": "TestCompany",
+        "password": "password1",
+        "companyName": "Target"
+    },
+    {
+        "UID": "O2",
+        "username": "TestOrg",
+        "password": "password1",
+        "orgName": "Cleveland Kosher Food Bank"
     }
 ]
