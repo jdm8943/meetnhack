@@ -20,7 +20,7 @@ public class VolunteerUserFileDAO {
 
     private String filename;
 
-    public VolunteerUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public VolunteerUserFileDAO(@Value("${volunteerUsers.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
 

@@ -20,7 +20,7 @@ public class CompanyUserFileDAO {
 
     private String filename;
 
-    public CompanyUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
+    public CompanyUserFileDAO(@Value("${companyUsers.file}") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
 
@@ -85,3 +85,4 @@ public class CompanyUserFileDAO {
         return user;
     }
 }
+
