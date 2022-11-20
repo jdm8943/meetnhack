@@ -3,6 +3,10 @@
         "UID": "V0",
         "username": "TestVolunteer",
         "password": "password",
-        "orgName": "TestOrg"
+        "name": "Spencer",
+        "currentPoints": 100,
+        "level": 100,
+        "claimedDiscounts": null,
+        "eventsJoined": null
     }
 ]
