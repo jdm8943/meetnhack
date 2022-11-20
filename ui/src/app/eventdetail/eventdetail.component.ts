@@ -4,6 +4,7 @@ import { AppComponent } from '../app.component';
 import { EventService } from '../events.service';
 import { OrgEvent } from '../orgEvent';
 import { Location } from '@angular/common';
+import { UserService } from '../user.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class EventDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private eventService: EventService,
+    private userService: UserService,
     private location: Location,
     public app: AppComponent
   ) { }
@@ -41,9 +43,9 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
 
-  join(): void{
+  join(eventID: number): void{
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
-    
+    console.log(this.userService.addEvent(String(id), eventID));
   }
 
   complete(): void{

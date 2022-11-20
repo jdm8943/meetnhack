@@ -51,12 +51,12 @@ export class UserService {
     };
   }
 
-  addEvent(UID: String, eventID: String){
+  addEvent(UID: String, eventID: number){
     const url = `${this.userUrl}/${UID}/${eventID}`;
     return this.http.post<User>(url, this.httpOptions)
       .pipe(
-        tap((newUser: User) => console.log(`login user=${newUser.username}, pass=${newUser.password}`)),
-        catchError(this.handleError<User>('login'))
+        tap((newUser: User) => console.log()),
+        catchError(this.handleError<User>('add event'))
     );
   }
 }
