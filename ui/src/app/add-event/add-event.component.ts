@@ -13,6 +13,7 @@ import { OrgEvent } from '../orgEvent';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
+  orgID!: string
 
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -24,12 +25,15 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    // this.app.loggedIn();
+    this.app.loggedIn();
+    this.orgID = (this.app.loggedInID || '').toString();
+    console.log(this.orgID);
   }
 
   add(orgID: string, eventName: string, description: string, points: number, date: string): void {
     if (!orgID || !eventName || !description || !points || !date) { return; }
     this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
+      .subscribe();
     return;
   }
 
