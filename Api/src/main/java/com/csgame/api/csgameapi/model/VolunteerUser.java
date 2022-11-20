@@ -25,7 +25,7 @@ public class VolunteerUser extends User {
         this.name = name;
         this.currentPoints = currentPoints;
         this.level = level;
-        this.claimedDiscounts = claimedDiscounts; 
+        this.claimedDiscounts = claimedDiscounts;
         this.eventsJoined = eventsJoined;
     }
 
@@ -53,11 +53,11 @@ public class VolunteerUser extends User {
         this.level = level;
     }
 
-    public Discount[] getClaimedDiscountID() {
-        return claimedDiscountID;
+    public Discount[] getClaimedDiscounts() {
+        return this.claimedDiscounts;
     }
 
-    public void setClaimedDiscountID(Discount[] claimedDiscountID) {
-        this.claimedDiscountID = claimedDiscountID;
+    public void setClaimedDiscountID(Discount[] claimedDiscounts) {
+        this.claimedDiscounts = claimedDiscounts;
     }
 }
