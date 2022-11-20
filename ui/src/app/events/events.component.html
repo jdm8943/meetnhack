@@ -1,10 +1,9 @@
 <h3>Events:</h3>
-
+<!-- works -->
 <div>
-    <ul>
-        <li *ngFor="let orgEvent of orgEvents">
-            <a routerLink="eventdetail/{{orgEvent.eventID}}">
-                <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button></a>
-        </li>
-    </ul>
+    <div *ngFor="let orgEvent of orgEvents">
+        <div *ngIf="app.loggedInID && (app.loggedInID[0]==='V' || (app.loggedInID[0]==='O' && orgEvent.orgID === 'O13'))">
+            <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
+        </div>
+    </div>
 </div>
