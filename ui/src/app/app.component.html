@@ -1,5 +1,11 @@
 <p-menubar styleClass="test" [model]="items">
+    <button class="booton" id="asdf" pButton label="asdf"></button>
+    <button class="booton" pButton label="Logout"></button>
 </p-menubar>
 <h1></h1>
+
+<nav><a routerLink="/login"><button pButton type="button" class="p-button-raised">Login</button></a></nav>
+
+<nav><a routerLink="/events"><button pButton type="button" class="p-button-raised">All Events</button></a></nav>
 
 <router-outlet></router-outlet>
