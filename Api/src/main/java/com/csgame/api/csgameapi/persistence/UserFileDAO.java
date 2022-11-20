@@ -13,8 +13,13 @@ import org.springframework.stereotype.Component;
 
 import com.csgame.api.csgameapi.model.User;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 @Component
 public class UserFileDAO implements UserDAO {
+    private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
+    
     Map<String, User> users;
 
     private ObjectMapper objectMapper;
@@ -76,6 +81,9 @@ public class UserFileDAO implements UserDAO {
     }
 
     public User login(String username, String password) {
+        String msg = "username: "+ username+ ", password: "+ password;
+        LOG.log(Level.SEVERE, msg);
+        
         for (User u : users.values()) {
             if (u.getUsername().equals(username) && u.getPassword().equals(password))
                 return u;
