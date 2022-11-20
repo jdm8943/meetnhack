@@ -27,8 +27,8 @@ export class EventDetailComponent implements OnInit {
   }
 
   getOrgEvent(): void {
-    const id = parseInt(this.route.snapshot.paramMap.get('eventID')!, 10);
-    console.log(this.route.snapshot.paramMap.get('eventID'));
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    console.log(this.route.snapshot.paramMap.get('id'));
     console.log(id);
     this.eventService.getEvent(id)
       .subscribe(orgEvent => {
