@@ -2,7 +2,7 @@ import { Component, OnInit, ApplicationRef } from '@angular/core';
 import { AppComponent } from '../app.component';
 
 import { OrgEvent } from '../orgEvent';
-import { EventService } from '../events.service';
+import { EventsService } from '../events.service';
 
 @Component({
   selector: 'app-events',
@@ -15,7 +15,7 @@ export class EventsComponent implements OnInit {
   showingDetail = false;
   thisOrgID: Number | null = null;
 
-  constructor(private eventService: EventService, public app: AppComponent) { }
+  constructor(private eventService: EventsService, public app: AppComponent) { }
 
   ngOnInit(): void {
     this.getEvents();
@@ -26,11 +26,10 @@ export class EventsComponent implements OnInit {
 
   getEvents(): void {
     this.eventService.getEvents()
-      .subscribe(orgEvents => {
+      .subscribe((orgEvents: OrgEvent[]) => {
         this.orgEvents = orgEvents;
         console.log(orgEvents);
       });
-
   }
 
   showDetail(): void {

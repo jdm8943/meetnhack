@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { EventService } from '../events.service';
+import { EventsService } from '../events.service';
 import { OrgEvent } from '../orgEvent';
 import { Location } from '@angular/common';
 import { UserService } from '../user.service';
@@ -18,7 +18,7 @@ export class EventDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventService,
+    private eventService: EventsService,
     private userService: UserService,
     private location: Location,
     public app: AppComponent
@@ -34,7 +34,7 @@ export class EventDetailComponent implements OnInit {
     console.log(this.route.snapshot.paramMap.get('id'));
     console.log(id);
     this.eventService.getEvent(id)
-      .subscribe(orgEvent => {
+      .subscribe((orgEvent: OrgEvent | undefined) => {
         this.orgEvent = orgEvent;
       });
   }
@@ -43,15 +43,15 @@ export class EventDetailComponent implements OnInit {
     this.location.back();
   }
 
-  join(eventID: number): void{
+  join(eventID: number): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     console.log("USER SERVIEC: ", this.userService.addEvent(String(id), eventID));
   }
 
-  complete(eventID: number): void{
+  complete(eventID: number): void {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     console.log("USER SERVIEC: ", this.userService.completeEvent(String(id), eventID));
-  
+
   }
 
   save(): void {

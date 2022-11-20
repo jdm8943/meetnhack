@@ -47,11 +47,17 @@ export class LoginComponent implements OnInit {
     this.userService.login({ UID, username, password } as User).subscribe((response) => {
       localStorage.setItem('loginSessId', String(response.UID));
       this.app.loggedIn();
+      console.log((this.app.loggedInID || '').toString());
+      if ((this.app.loggedInID || '').toString()[0] == 'O') {
+        this.router.navigateByUrl('/add-event');
+      } else if ((this.app.loggedInID || '').toString()[0] == 'V') {
+        this.router.navigateByUrl('/events');
+      }
     },
       (err) => console.log(err)
     );
     // this.snackBar.open('Message archived');
-    this.router.navigateByUrl('/events');
+
     return;
   }
 

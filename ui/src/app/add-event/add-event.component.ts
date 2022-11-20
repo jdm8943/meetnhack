@@ -4,7 +4,7 @@ import { AppComponent } from '../app.component';
 
 import { Location } from '@angular/common';
 import { PrimeNGConfig } from 'primeng/api';
-import { EventService } from '../events.service';
+import { EventsService } from '../events.service';
 import { OrgEvent } from '../orgEvent';
 
 @Component({
@@ -17,7 +17,7 @@ export class AddEventComponent implements OnInit {
 
   constructor(
     private primengConfig: PrimeNGConfig,
-    private eventService: EventService,
+    private eventsService: EventsService,
     private route: ActivatedRoute,
     private location: Location,
     public app: AppComponent
@@ -30,9 +30,14 @@ export class AddEventComponent implements OnInit {
     console.log(this.orgID);
   }
 
-  add(eventName: string, description: string, points: number, date: string): void {
-    // if (!orgID || !eventName || !description || !points || !date) { return; }
-    // this.eventService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
+  add(orgID: number, eventName: string, description: string, points: number, date: string): void {
+    if (!orgID || !eventName || !description || !points || !date) { return; }
+    console.log(orgID.toString());
+    console.log(eventName);
+    console.log(description);
+    this.eventsService.addEvent({ orgID, eventName, description, points, date } as OrgEvent)
+      .subscribe()
+    window.location.reload();
     return;
   }
 
