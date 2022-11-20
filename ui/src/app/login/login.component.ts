@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user';
 
 import { PrimeNGConfig } from 'primeng/api';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -18,8 +19,10 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private userService: UserService,
     private primengConfig: PrimeNGConfig,
-    public app: AppComponent
-    ) { }
+    public app: AppComponent,
+    private router: Router,
+    // public snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.userService.getUser("V0")
@@ -28,26 +31,28 @@ export class LoginComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
-  public login(username: String, password: String){
+  public login(username: String, password: String) {
     username = username.trim();
     password = password.trim();
-    var UID:String = "";
+    var UID: String = "";
 
-    if (!username || !password){
+    if (!username || !password) {
       confirm("Missing username or password");
       return;
     }
-    
-    if(this.app.loggedInID != null){
+
+    if (this.app.loggedInID != null) {
       this.app.logout();
     }
-    this.userService.login({UID, username, password} as User).subscribe((response) => {
+    this.userService.login({ UID, username, password } as User).subscribe((response) => {
       localStorage.setItem('loginSessId', String(response.UID));
       this.app.loggedIn();
     },
       (err) => console.log(err)
     );
+    // this.snackBar.open('Message archived');
+    this.router.navigateByUrl('/events');
     return;
   }
-  
+
 }
