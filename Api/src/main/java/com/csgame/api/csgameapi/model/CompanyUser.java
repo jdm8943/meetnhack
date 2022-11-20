@@ -35,8 +35,8 @@ public class CompanyUser extends User {
         return companyName;
     }
 
-    public void setCompanyName(String orgName) {
-        this.companyName = orgName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
 }
