@@ -19,6 +19,7 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
 
     private ObjectMapper objectMapper;
 
+    private static int nextID;
     private String filename;
 
     public VolunteerUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
@@ -64,6 +65,7 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
 
     private boolean load() throws IOException {
         users = new TreeMap<>();
+        nextID = 0;
 
         VolunteerUser[] userArray = objectMapper.readValue(new File(filename), VolunteerUser[].class);
 
@@ -72,6 +74,23 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
                 users.put(user.getUsername(), user);
 
         return true;
+    }
+
+    private synchronized static int nextID() {
+        int id = nextID;
+        nextID += 1;
+        return id;
+    }
+    
+    public VolunteerUser createUser(VolunteerUser u) throws IOException {
+        synchronized(users) {
+            VolunteerUser user = new VolunteerUser("V" + nextID(), u.getUsername(), u.getPassword(),
+                                        u.getName(), u.getCurrentPoints(), u.getLevel(),
+                                        u.getClaimedDiscounts(), u.getEventsJoined());
+            users.put(user.getUsername(), user);
+            save();
+            return user;
+        }
     }
 
     public VolunteerUser login(String username, String password) {

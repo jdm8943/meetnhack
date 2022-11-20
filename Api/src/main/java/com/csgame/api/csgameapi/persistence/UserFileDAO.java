@@ -19,6 +19,7 @@ public class UserFileDAO implements UserDAO {
 
     private ObjectMapper objectMapper;
 
+    private static int nextID;
     private String filename;
 
     public UserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
@@ -64,6 +65,7 @@ public class UserFileDAO implements UserDAO {
 
     private boolean load() throws IOException {
         users = new TreeMap<>();
+        nextID = 0;
 
         User[] userArray = objectMapper.readValue(new File(filename), User[].class);
 
