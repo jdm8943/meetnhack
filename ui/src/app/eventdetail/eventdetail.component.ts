@@ -48,10 +48,12 @@ export class EventDetailComponent implements OnInit {
 
   join(): void {
     console.log("USER SERVICE: ", this.userService.joinEvent(this.UID, this.eventID).subscribe());
+    window.location.reload();
   }
 
   complete(): void {
     console.log("USER SERVICE: ", this.userService.completeEvent(this.UID, this.eventID).subscribe());
+    window.location.reload();
   }
 
   save(): void {
