@@ -19,6 +19,7 @@ import { AddEventComponent } from './add-event/add-event.component';
 import { RippleModule } from 'primeng/ripple';
 import { EventDetailComponent } from './eventdetail/eventdetail.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DiscountsComponent } from './discounts/discounts.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     EventsComponent,
     AddEventComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    DiscountsComponent
   ],
   imports: [
     BrowserModule,
