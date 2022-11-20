@@ -34,10 +34,11 @@ public class NPOUser extends User {
     public NPOUser(@JsonProperty("UID") String UID,
             @JsonProperty("username") String username,
             @JsonProperty("password") String password,
-            @JsonProperty("orgName") String orgName) {
+            @JsonProperty("orgName") String orgName,
+            @JsonProperty("NPOevents") ArrayList<Event> NPOevents) {
         super(UID, username, password);
         this.orgName = orgName;
-        NPOevents = new ArrayList<>();
+        this.NPOevents = NPOevents;
     }
 
     public String getOrgName() {

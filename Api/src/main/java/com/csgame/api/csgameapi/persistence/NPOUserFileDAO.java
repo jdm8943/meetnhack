@@ -19,6 +19,7 @@ public class NPOUserFileDAO implements NPOUserDAO {
 
     private ObjectMapper objectMapper;
 
+    private static int nextID;
     private String filename;
 
     public NPOUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
@@ -63,6 +64,7 @@ public class NPOUserFileDAO implements NPOUserDAO {
     }
 
     private boolean load() throws IOException {
+        nextID = 0;
         users = new TreeMap<>();
 
         NPOUser[] userArray = objectMapper.readValue(new File(filename), NPOUser[].class);
@@ -85,5 +87,21 @@ public class NPOUserFileDAO implements NPOUserDAO {
 
     public NPOUser updateUser(NPOUser user) {
         return user;
+    }
+
+    private synchronized static int nextID() {
+        int id = nextID;
+        nextID += 1;
+        return id;
+    }
+
+    public NPOUser createUser(NPOUser u) throws IOException {
+        synchronized(users) {
+            NPOUser user = new NPOUser("O" + nextID(), u.getUsername(), u.getPassword(),
+                                        u.getOrgName(), u.getAllEvents());
+            users.put(user.getUID(), user);
+            save();
+            return user;
+        }
     }
 }

@@ -131,8 +131,6 @@ public class EventController {
         ResponseEntity<Event[]> response = searchEvents(name);
 
         try {
-            System.out.println(response.getBody() == null);
-            System.out.println((response.getBody() != null && response.getBody().length < 1));
             if (response.getBody() == null || (response.getBody() != null && response.getBody().length < 1)) {
                 return new ResponseEntity<Event>(EventDao.createEvent(event), HttpStatus.CREATED);
             } else

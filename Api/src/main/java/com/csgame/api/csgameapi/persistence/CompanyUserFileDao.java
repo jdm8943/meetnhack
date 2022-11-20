@@ -19,6 +19,7 @@ public class CompanyUserFileDAO implements CompanyUserDAO {
 
     private ObjectMapper objectMapper;
 
+    private static int nextID;
     private String filename;
 
     public CompanyUserFileDAO(@Value("${users.file}") String filename, ObjectMapper objectMapper) throws IOException {
@@ -63,6 +64,7 @@ public class CompanyUserFileDAO implements CompanyUserDAO {
     }
 
     private boolean load() throws IOException {
+        nextID = 0;
         users = new TreeMap<>();
 
         CompanyUser[] userArray = objectMapper.readValue(new File(filename), CompanyUser[].class);
@@ -85,5 +87,22 @@ public class CompanyUserFileDAO implements CompanyUserDAO {
 
     public CompanyUser updateUser(CompanyUser user) {
         return user;
+    }
+
+    private synchronized static int nextID() {
+        int id = nextID;
+        nextID += 1;
+        return id;
+    }
+    
+    public CompanyUser createUser(CompanyUser u) throws IOException {
+        synchronized(users) {
+            CompanyUser user = new CompanyUser("C" + nextID(), u.getUsername(), 
+                                                u.getPassword(), u.getCompanyName(), 
+                                                u.getCompanyDiscounts());
+            users.put(user.getUID(), user);
+            save();
+            return user;
+        }
     }
 }

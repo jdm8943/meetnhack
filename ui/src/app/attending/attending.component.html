@@ -1,0 +1,13 @@
+<h2>Attending</h2>
+
+<div>
+    <ul>
+        <div *ngFor="let orgEvent of orgEvents">
+            <div>
+                <a routerLink="/events/{{orgEvent.eventID}}">
+                    <button pButton type="button" label="{{orgEvent.eventName}}" class="p-button-outlined"></button>
+                </a>
+            </div>
+        </div>
+    </ul>
+</div>
