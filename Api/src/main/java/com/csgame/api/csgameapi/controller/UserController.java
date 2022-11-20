@@ -53,7 +53,7 @@ public class UserController {
         this.vDAO = volunteerDAO;
         this.cDAO = companyDAO;
         this.oDAO = npoDAO;
-        this.eDAO =eventDAO;
+        this.eDAO = eventDAO;
     }
 
     @GetMapping("/{UID}")
@@ -62,27 +62,24 @@ public class UserController {
             // parse uid instead of guessing and checking
             // depending on first letter, use if and go to right DAO
             String userType = UID.substring(0, 1);
-            String u;
+
             VolunteerUser v = null;
             CompanyUser c = null;
             NPOUser n = null;
 
             if (userType.equals("V")){
-                u = "V";
                 v = (VolunteerUser) vDAO.getVUser(UID);
             }
             else if (userType.equals("C")){
-                u = "C";
                 c = cDAO.getUser(UID);
             }
             else { // equals o
-                u = "O";
                 n = oDAO.getUser(UID);  
             }
 
-            if (u.equals("V"))
+            if (userType.equals("V"))
                 return new ResponseEntity<User>((VolunteerUser)v, HttpStatus.OK);
-            else if (u.equals("C"))
+            else if (userType.equals("C"))
                 return new ResponseEntity<User>((CompanyUser)c, HttpStatus.OK);
             else
                 return new ResponseEntity<User>((NPOUser)n, HttpStatus.OK);
@@ -91,6 +88,32 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    // @PostMapping("")
+    // public ResponseEntity<User> createUser(@RequestBody User user) {
+    //     try {
+    //         String userType = user.getUID().substring(0, 1);
+
+    //         VolunteerUser v = null;
+    //         CompanyUser c = null;
+    //         NPOUser n = null;
+
+    //         if (userType.equals("V"))
+    //             v = (VolunteerUser) vDAO.getVUser(UID);
+    //         else if (userType.equals("C"))
+    //             c = cDAO.getUser(UID);
+    //         else // equals o
+    //             n = oDAO.getUser(UID);  
+
+    //         if(createdUser == null)
+    //             return new ResponseEntity<>(HttpStatus.CONFLICT);
+    //         else
+    //             return new ResponseEntity<User>(createdUser, HttpStatus.CREATED);
+    //     }
+    //     catch (IOException e) {
+    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
 
     // @PatchMapping("")
     // public ResponseEntity<User> updateUser(@RequestBody JsonNode requestBody) {
