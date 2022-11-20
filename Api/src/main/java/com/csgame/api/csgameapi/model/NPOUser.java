@@ -57,11 +57,12 @@ public class NPOUser extends User {
     public boolean deleteEvent(int eventID){
         boolean deleted = false;
         for (Event e : NPOevents){
-            if (e.getEventID() == eventID.getEventID){
+            if (e.getEventID() == eventID){
                 NPOevents.remove(e);
                 deleted = true;
             }
         }
+        return deleted;
     }
 
     public ArrayList<Event> getAllEvents(){
