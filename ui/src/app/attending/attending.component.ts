@@ -27,7 +27,6 @@ export class AttendingComponent implements OnInit {
       this.userService.getUser(this.app.loggedInID)
         .subscribe(user => {this.orgEvents = (user as Volunteer_User).eventsJoined; console.log(this.orgEvents)});
     }
-
   }
 
 }
