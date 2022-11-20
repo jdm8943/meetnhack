@@ -65,8 +65,7 @@ public class EventController {
                 return new ResponseEntity<Event>(event, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -84,8 +83,7 @@ public class EventController {
         try {
             Event[] events = EventDao.getEvents();
             return new ResponseEntity<Event[]>(events, HttpStatus.OK);
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -111,8 +109,7 @@ public class EventController {
         try {
             Event[] events = EventDao.findEvents(eventName);
             return new ResponseEntity<Event[]>(events, HttpStatus.OK);
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -132,18 +129,17 @@ public class EventController {
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
         String name = event.getEventName();
         ResponseEntity<Event[]> response = searchEvents(name);
-        
+
         try {
+            System.out.println(response.getBody() == null);
+            System.out.println((response.getBody() != null && response.getBody().length < 1));
             if (response.getBody() == null || (response.getBody() != null && response.getBody().length < 1)) {
                 return new ResponseEntity<Event>(EventDao.createEvent(event), HttpStatus.CREATED);
-            } 
-            else
+            } else
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        } 
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -167,8 +163,7 @@ public class EventController {
                 return new ResponseEntity<Event>(newEvent, HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     } // TEST LATER
@@ -189,8 +184,7 @@ public class EventController {
                 return new ResponseEntity<>(HttpStatus.OK);
             else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } 
-        catch (IOException e) {
+        } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

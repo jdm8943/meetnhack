@@ -13,6 +13,7 @@ import { OrgEvent } from '../orgEvent';
   styleUrls: ['./add-event.component.css']
 })
 export class AddEventComponent implements OnInit {
+  orgID!: number
 
   constructor(
     private primengConfig: PrimeNGConfig,
@@ -24,7 +25,9 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
-    // this.app.loggedIn();
+    this.app.loggedIn();
+    this.orgID = parseInt((this.app.loggedInID || '').toString().substring(1));
+    console.log(this.orgID);
   }
 
   add(eventName: string, description: string, points: number, date: string): void {
