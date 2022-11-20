@@ -1,5 +1,7 @@
 package com.csgame.api.csgameapi.model;
 
+import java.util.ArrayList;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class VolunteerUser extends User {
@@ -11,22 +13,27 @@ public class VolunteerUser extends User {
     @JsonProperty("level") 
     private double level;
     @JsonProperty("claimedDiscounts") 
-    private Discount[] claimedDiscounts;
+    private ArrayList<Discount> claimedDiscounts;
     @JsonProperty("eventsJoined")
-    private Event[] eventsJoined; 
+    private ArrayList<Event> eventsJoined; 
 
+<<<<<<< HEAD
     public VolunteerUser(@JsonProperty("UID")String UID, @JsonProperty("username")String username, @JsonProperty("password")String password, 
                         @JsonProperty("name") String name,
                         @JsonProperty("currentPoints") int currentPoints,
                         @JsonProperty("level") double level,
                         @JsonProperty("claimedDiscounts") Discount[] claimedDiscounts,
                         @JsonProperty("eventsJoined") Event[] eventsJoined) {
+=======
+    public VolunteerUser(String UID, String username, String password, 
+                        @JsonProperty("name") String name) {
+>>>>>>> 7d75da386a44f2703e15a41759ae5e422e04ee70
         super(UID, username, password);
         this.name = name;
-        this.currentPoints = currentPoints;
-        this.level = level;
-        this.claimedDiscounts = claimedDiscounts;
-        this.eventsJoined = eventsJoined;
+        this.currentPoints = 0;
+        this.level = 0;
+        this.claimedDiscounts = new ArrayList<>();
+        this.eventsJoined = new ArrayList<>();
     }
 
     public String getName() {
@@ -41,23 +48,36 @@ public class VolunteerUser extends User {
         return currentPoints;
     }
 
-    public void setCurrentPoints(int currentPoints) {
-        this.currentPoints = currentPoints;
+    public boolean addEvent(Event event) {
+        return eventsJoined.add(event);
+    }
+
+    //Returns -1 if not added
+    public int completeEvent(Event event) {
+        int added = -1;
+        for (Event e : eventsJoined){
+            if (e.getEventID() == event.getEventID()){
+                currentPoints += event.getPoints();
+                level += event.getPoints()/1000;
+                added = event.getPoints();
+                eventsJoined.remove(e);
+                break;
+            }
+        }
+        return added;
     }
 
     public double getLevel() {
         return level;
     }
 
-    public void setLevel(double level) {
-        this.level = level;
-    }
-
-    public Discount[] getClaimedDiscounts() {
+    public ArrayList<Discount> getClaimedDiscounts() {
         return this.claimedDiscounts;
     }
 
-    public void setClaimedDiscountID(Discount[] claimedDiscounts) {
+    public void setClaimedDiscountID(ArrayList<Discount> claimedDiscounts) {
         this.claimedDiscounts = claimedDiscounts;
     }
+
+
 }
