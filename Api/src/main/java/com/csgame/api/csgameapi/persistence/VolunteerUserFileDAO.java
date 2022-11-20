@@ -56,12 +56,12 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
         }
     }
 
-    private boolean save() throws IOException {
-        VolunteerUser[] userArray = getUsersArray();
+    // private boolean save() throws IOException {
+    //     VolunteerUser[] userArray = getUsersArray();
 
-        objectMapper.writeValue(new File(filename), userArray);
-        return true;
-    }
+    //     objectMapper.writeValue(new File(filename), userArray);
+    //     return true;
+    // }
 
     private boolean load() throws IOException {
         users = new TreeMap<>();
@@ -88,7 +88,7 @@ public class VolunteerUserFileDAO implements VolunteerUserDAO {
                                         u.getName(), u.getCurrentPoints(), u.getLevel(),
                                         u.getClaimedDiscounts(), u.getEventsJoined());
             users.put(user.getUsername(), user);
-            save();
+            //save();
             return user;
         }
     }
