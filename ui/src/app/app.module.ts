@@ -12,12 +12,15 @@ import {ButtonModule} from 'primeng/button';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
+import { AddEventComponent } from './add-event/add-event.component';
+import {RippleModule} from 'primeng/ripple';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    EventsComponent
+    EventsComponent,
+    AddEventComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import {InputTextModule} from 'primeng/inputtext';
     HttpClientModule,
     ButtonModule,
     MenubarModule,
-    InputTextModule
+    InputTextModule,
+    RippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
