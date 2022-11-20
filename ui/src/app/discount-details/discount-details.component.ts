@@ -12,6 +12,7 @@ import { Location } from '@angular/common';
 })
 export class DiscountDetailsComponent implements OnInit {
   discount: Discount | null = null;
+  random: String = "";
 
   constructor(private route: ActivatedRoute,
     public app: AppComponent,
@@ -19,6 +20,7 @@ export class DiscountDetailsComponent implements OnInit {
     private location: Location,) { }
 
   ngOnInit(): void {
+    this.random = (Math.random() + 1).toString(36).substring(7);
     this.app.loggedIn();
     this.getDiscount();
   }
