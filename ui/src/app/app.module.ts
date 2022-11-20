@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EventsComponent } from './events/events.component';
+//import { EventsComponent } from './events/events.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
@@ -14,7 +14,6 @@ import {MenuItem} from 'primeng/api';
 import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import { ToolbarModule } from 'primeng/toolbar';
-import {RippleModule} from 'primeng/ripple';
 
 import { AddEventComponent } from './add-event/add-event.component';
 import {RippleModule} from 'primeng/ripple';
@@ -23,7 +22,7 @@ import {RippleModule} from 'primeng/ripple';
   declarations: [
     AppComponent,
     LoginComponent,
-    EventsComponent,
+    //EventsComponent,
     AddEventComponent
   ],
   imports: [
@@ -35,7 +34,6 @@ import {RippleModule} from 'primeng/ripple';
     InputTextModule,
     CheckboxModule,
     ToolbarModule,
-    RippleModule,
     RippleModule
   ],
   providers: [],
