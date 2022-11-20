@@ -45,7 +45,7 @@ public class NPOUser extends User {
     }
 
     public Event createEvent(int eventID, int orgID, String eventName, String description, int points, String date){
-        Event e = new Event(eventID, date, eventName, description, points, null, date);
+        Event e = new Event(eventID, orgID, eventName, description, points, date);
         return e;
     }
 }
