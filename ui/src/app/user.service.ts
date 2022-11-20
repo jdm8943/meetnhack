@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user';
+import { Volunteer_User } from './volunteer_user';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +21,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   /** GET hero by id. Will 404 if id not found */
-  getUser(id: string): Observable<User> {
+  getUser(id: string): Observable<Volunteer_User> {
     const url = `${this.userUrl}/${id}`;
-    return this.http.get<User>(url).pipe(
+    return this.http.get<Volunteer_User>(url).pipe(
       tap(_ => console.log(`fetched hero id=${id}`)),
-      catchError(this.handleError<User>(`getHero id=${id}`))
+      catchError(this.handleError<Volunteer_User>(`getHero id=${id}`))
     );
   }
 
