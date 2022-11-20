@@ -24,7 +24,7 @@
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "primeng/resources/themes/bootstrap4-dark-blue/theme.css",
+              "primeng/resources/themes/lara-light-teal/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
@@ -94,7 +94,7 @@
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              "primeng/resources/themes/bootstrap4-dark-blue/theme.css",
+              "primeng/resources/themes/lara-light-teal/theme.css",
               "node_modules/primeng/resources/primeng.min.css",
               "src/styles.css"
             ],
