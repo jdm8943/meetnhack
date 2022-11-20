@@ -92,6 +92,20 @@ public class UserController {
     //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     // }
     
+    // @PostMapping("/login")
+    // public ResponseEntity<User> loginUser(@RequestBody User user){
+    //     try {
+            
+    //         User checkUser = userDAO.checkUserLogin(user.getUsername(), user.getPassword());
+    //         if(checkUser != null)
+    //             return new ResponseEntity<User>(checkUser, HttpStatus.ACCEPTED);
+    //         else
+    //             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     }catch(IOException e){
+    //         LOG.log(Level.SEVERE,e.getLocalizedMessage());
+    //         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    //     }
+    // }
 
     /**
      * get user
